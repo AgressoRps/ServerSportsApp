@@ -2,6 +2,7 @@ package org.communis.serversportsapp.entity;
 
 import lombok.Data;
 import org.communis.serversportsapp.enums.UserAppRole;
+import org.communis.serversportsapp.enums.UserState;
 
 import javax.persistence.*;
 
