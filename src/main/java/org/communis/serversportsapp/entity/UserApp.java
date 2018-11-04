@@ -36,5 +36,5 @@ public class UserApp {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "state")
-    private UserState state;
+    private UserState userState;
 }

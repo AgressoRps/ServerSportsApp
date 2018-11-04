@@ -68,7 +68,7 @@ public class UserAppWrapper implements ObjectWrapper<UserApp>, Serializable {
             email = item.getEmail();
             password = item.getPassword();
             role = item.getRole();
-            state = item.getState();
+            state = item.getUserState();
         }
     }
 
@@ -84,7 +84,7 @@ public class UserAppWrapper implements ObjectWrapper<UserApp>, Serializable {
             item.setLogin(login);
             item.setEmail(email);
             item.setRole(role);
-            item.setState(state);
+            item.setUserState(state);
         }
     }
 
