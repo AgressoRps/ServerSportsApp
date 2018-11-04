@@ -6,8 +6,8 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "friend")
-public class Friend {
+@Table(name = "rank_user")
+public class RankUser {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
@@ -18,7 +18,7 @@ public class Friend {
     private UserApp user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_friend")
-    private UserApp friend;
+    @JoinColumn(name = "id_rank")
+    private Rank rank;
 
 }
