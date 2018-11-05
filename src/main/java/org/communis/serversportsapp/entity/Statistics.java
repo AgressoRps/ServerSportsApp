@@ -1,6 +1,7 @@
 package org.communis.serversportsapp.entity;
 
 import lombok.Data;
+import org.communis.serversportsapp.enums.DifficultyState;
 import org.communis.serversportsapp.enums.HealthState;
 import org.communis.serversportsapp.enums.MoodState;
 
