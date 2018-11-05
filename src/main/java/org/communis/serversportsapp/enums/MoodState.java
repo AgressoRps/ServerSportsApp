@@ -1,22 +1,22 @@
 package org.communis.serversportsapp.enums;
 
 public enum MoodState {
-    WEAKNESS{}, MUSCLE_PAIN{}, NORMAL{}, CHEERFULNESS;
+    NOTHING{}, INDIFFERENT{}, ACTIVE{}, GOOD{};
 
     /**
-     * Метод получения текущего состояния пользователя в строковом виде
-     * @return состояние пользователя
+     * Метод получения текущего настроения пользователя в строковом виде
+     * @return настроение пользователя
      */
     public String getStringName(){
         switch (this){
-            case WEAKNESS:
-                return "Weakness";
-            case MUSCLE_PAIN:
-                return "Muscle pain";
-            case NORMAL:
-                return "Normal";
-            case CHEERFULNESS:
-                return "Cheerfulness";
+            case NOTHING:
+                return "I want nothing";
+            case INDIFFERENT:
+                return "Indifferent";
+            case ACTIVE:
+                return "Active";
+            case GOOD:
+                return "Very good";
             default:
                 return null;
         }
