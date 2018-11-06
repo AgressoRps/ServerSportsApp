@@ -9,7 +9,7 @@ public interface ProgressRepository extends JpaRepository<Progress, Short> {
 
     /**
      * Метод поиска и получения первого вхождения в таблицу указанного имени
-     * @param name наименование прогресса
+     * @param name наименование достижения
      * @return экземпляр класса Progress
      */
     Optional<Progress> findFirstByName(String name);

@@ -51,6 +51,13 @@ public class ErrorCodeConstants {
     public static final ErrorCodeIdentifier PROGRESS_UPDATE_ERROR = PROGRESS.branch("4");
     public static final ErrorCodeIdentifier PROGRESS_DELETE_ERROR = PROGRESS.branch("5");
 
+    public static final ErrorCodeIdentifier RANK = new ErrorCodeIdentifier("3");
+    public static final ErrorCodeIdentifier RANK_LIST_ERROR = RANK.branch("1");
+    public static final ErrorCodeIdentifier RANK_INFO_ERROR = RANK.branch("2");
+    public static final ErrorCodeIdentifier RANK_ADD_ERROR = RANK.branch("3");
+    public static final ErrorCodeIdentifier RANK_UPDATE_ERROR = RANK.branch("4");
+    public static final ErrorCodeIdentifier RANK_DELETE_ERROR = RANK.branch("5");
+
 
 
     static {
@@ -87,11 +94,17 @@ public class ErrorCodeConstants {
         messages.put(TRAINING_DAY_UPDATE_ERROR, "Ошибка при изменении тренировочного дня");
         messages.put(TRAINING_DAY_DELETE_ERROR, "Ошибка при удалении тренировочного дня");
 
-        messages.put(PROGRESS_LIST_ERROR, "Ошибка при получении списка всех значения таблицы Progress");
-        messages.put(PROGRESS_INFO_ERROR, "Ошибка при получении прогресса");
-        messages.put(PROGRESS_ADD_ERROR, "Ошибка при добавлении прогресса");
-        messages.put(PROGRESS_UPDATE_ERROR, "Ошибка при изменении прогресса");
-        messages.put(PROGRESS_DELETE_ERROR, "Ошибка при удалении прогресса");
+        messages.put(PROGRESS_LIST_ERROR, "Ошибка при получении списка всех достижений");
+        messages.put(PROGRESS_INFO_ERROR, "Ошибка при получении достижения");
+        messages.put(PROGRESS_ADD_ERROR, "Ошибка при добавлении достижения");
+        messages.put(PROGRESS_UPDATE_ERROR, "Ошибка при изменении достижения");
+        messages.put(PROGRESS_DELETE_ERROR, "Ошибка при удалении достижения");
+
+        messages.put(RANK_LIST_ERROR, "Ошибка при получении списка всех званий");
+        messages.put(RANK_INFO_ERROR, "Ошибка при получении звания");
+        messages.put(RANK_ADD_ERROR, "Ошибка при добавлении звания");
+        messages.put(RANK_UPDATE_ERROR, "Ошибка при изменении звания");
+        messages.put(RANK_DELETE_ERROR, "Ошибка при удалении звания");
 
     }
 }
