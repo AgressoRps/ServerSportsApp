@@ -1,7 +1,7 @@
 package org.communis.serversportsapp.entity;
 
 import lombok.Data;
-import org.communis.serversportsapp.enums.ProgramState;
+import org.communis.serversportsapp.enums.TrainingProgramState;
 
 import javax.persistence.*;
 
@@ -37,6 +37,6 @@ public class TrainingProgram {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "is_complete")
-    private ProgramState programState;
+    private TrainingProgramState trainingProgramState;
 
 }

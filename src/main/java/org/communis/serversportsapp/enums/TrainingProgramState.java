@@ -1,6 +1,6 @@
 package org.communis.serversportsapp.enums;
 
-public enum ProgramState {
+public enum TrainingProgramState {
     COMPLETED{}, STARTED{}, AVAILABLE{};
 
     /**
