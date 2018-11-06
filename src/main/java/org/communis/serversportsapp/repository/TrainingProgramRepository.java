@@ -21,5 +21,5 @@ public interface TrainingProgramRepository extends JpaRepository<TrainingProgram
      * @param trainingProgramState состояние программы, по которому происходит отбор экземпляров
      * @return список экземпляров класса TrainingProgram
      */
-    List<TrainingProgram> findByProgramState(TrainingProgramState trainingProgramState);
+    List<TrainingProgram> findByTrainingProgramState(TrainingProgramState trainingProgramState);
 }
