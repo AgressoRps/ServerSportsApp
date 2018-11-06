@@ -55,7 +55,7 @@ public class UserAppWrapper implements ObjectWrapper<UserApp>, Serializable {
     }
 
     /**
-     * Добавление объекта UserApp в объект UserAppWrapper
+     * Добавление данных объекта UserApp в объект UserAppWrapper
      * @param item - экземпляр объекта UserApp
      */
     @Override

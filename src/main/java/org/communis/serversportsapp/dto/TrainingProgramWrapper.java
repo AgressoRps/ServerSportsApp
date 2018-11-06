@@ -31,7 +31,7 @@ public class TrainingProgramWrapper implements ObjectWrapper<TrainingProgram>, S
     }
 
     /**
-     * Добавление объекта TrainingProgram в объект TrainingProgramWrapper
+     * Добавление данных объекта TrainingProgram в объект TrainingProgramWrapper
      * @param item - экземпляр объекта TrainingProgram
      */
     @Override
