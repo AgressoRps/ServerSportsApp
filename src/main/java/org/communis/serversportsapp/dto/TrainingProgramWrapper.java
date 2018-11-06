@@ -1,5 +1,6 @@
 package org.communis.serversportsapp.dto;
 
+import lombok.Data;
 import org.communis.serversportsapp.entity.LevelDifficulty;
 import org.communis.serversportsapp.entity.TrainingLocation;
 import org.communis.serversportsapp.entity.TrainingProgram;
@@ -8,7 +9,8 @@ import org.communis.serversportsapp.enums.TrainingProgramState;
 
 import java.io.Serializable;
 
-public class TrainingProgramWrapper implements ObjectWrapper<TrainingProgram>, Serializable {
+@Data
+public class TrainingProgramWrapper implements ObjectWrapper<TrainingProgram>, Serializable{
 
     private Long id;
     private UserApp user;
@@ -38,6 +40,7 @@ public class TrainingProgramWrapper implements ObjectWrapper<TrainingProgram>, S
             id = item.getId();
             user = item.getUser();
             trainingLocation = item.getTrainingLocation();
+            levelDifficulty = item.getLevelDifficulty();
             trainingProgramName = item.getTrainingProgramName();
             photoName = item.getPhotoName();
             timeBetweenExecution = item.getTimeBetweenExecution();
@@ -55,9 +58,11 @@ public class TrainingProgramWrapper implements ObjectWrapper<TrainingProgram>, S
             item.setId(id);
             item.setUser(user);
             item.setTrainingLocation(trainingLocation);
+            item.setLevelDifficulty(levelDifficulty);
             item.setTrainingProgramName(trainingProgramName);
             item.setPhotoName(photoName);
             item.setTimeBetweenExecution(timeBetweenExecution);
+            item.setTrainingProgramState(trainingProgramState);
         }
     }
 }

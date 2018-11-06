@@ -14,7 +14,7 @@ public class Exercise {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Short id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_training_location")
     private TrainingLocation trainingLocation;
 
