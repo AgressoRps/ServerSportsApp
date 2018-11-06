@@ -27,7 +27,7 @@ public class TrainingProgramController {
      * @return список экземпляров класса TrainingProgramWrapper содержащих информацию о программе
      * @throws ServerException в случае ошибки во время выполнения - генерация исключения
      */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<TrainingProgramWrapper> getTrainingPrograms() throws ServerException {
         return trainingProgramService.getAllTrainingPrograms();
     }

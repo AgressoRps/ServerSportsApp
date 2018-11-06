@@ -28,7 +28,7 @@ public class TrainingDayController {
      * @return список экземпляров класса TrainingDayWrapper содержащих информацию о тренировочном дне
      * @throws ServerException в случае ошибки во время выполнения - генерация исключения
      */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<TrainingDayWrapper> getTrainingDays() throws ServerException {
         return trainingDayService.getAllTrainingDays();
     }

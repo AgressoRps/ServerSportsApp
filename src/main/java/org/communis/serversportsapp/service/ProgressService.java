@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Transactional(rollbackFor = ServerException.class)
 public class ProgressService {
 
-    private ProgressRepository progressRepository;
+    private final ProgressRepository progressRepository;
 
     @Autowired
     public ProgressService(ProgressRepository progressRepository){
