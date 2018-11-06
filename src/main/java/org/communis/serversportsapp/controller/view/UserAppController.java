@@ -23,6 +23,12 @@ public class UserAppController {
         this.userAppService = userAppService;
     }
 
+    /**
+     * Метод получения данных указанного пользователя по идентификатору
+     * @param id идентификатор запрашиваемого пользователя
+     * @return UserAppWrapper - содержит допустимые для отправки данные о пользователе
+     * @throws ServerException в случае ошибки во время выполнения - генерация исключения
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public UserAppWrapper getUserById(@PathVariable("id") Long id) throws ServerException{
         return userAppService.getById(id);
