@@ -11,7 +11,7 @@ public class ErrorCodeConstants {
     public static final ErrorCodeIdentifier ACCESS_ERROR = BASE.branch("2");
     public static final ErrorCodeIdentifier DATA_VALIDATE_ERROR = BASE.branch("3");
 
-    public static final ErrorCodeIdentifier USER = new ErrorCodeIdentifier("2");
+    public static final ErrorCodeIdentifier USER = new ErrorCodeIdentifier("1");
     public static final ErrorCodeIdentifier USER_LIST_ERROR = USER.branch("1");
     public static final ErrorCodeIdentifier USER_INFO_ERROR = USER.branch("2");
 
@@ -29,6 +29,14 @@ public class ErrorCodeConstants {
 
     public static final ErrorCodeIdentifier USER_UNBLOCK_ERROR = USER.branch("7");
     public static final ErrorCodeIdentifier USER_DELETE_ERROR = USER.branch("8");
+
+    public static final ErrorCodeIdentifier TRAINING_PROGRAM = new ErrorCodeIdentifier("2");
+    public static final ErrorCodeIdentifier TRAINING_PROGRAM_LIST_ERROR = TRAINING_PROGRAM.branch("1");
+    public static final ErrorCodeIdentifier TRAINING_PROGRAM_INFO_ERROR = TRAINING_PROGRAM.branch("2");
+    public static final ErrorCodeIdentifier TRAINING_PROGRAM_ADD_ERROR = TRAINING_PROGRAM.branch("3");
+    public static final ErrorCodeIdentifier TRAINING_PROGRAM_UPDATE_ERROR = TRAINING_PROGRAM.branch("4");
+    public static final ErrorCodeIdentifier TRAINING_PROGRAM_DELETE_ERROR = TRAINING_PROGRAM.branch("5");
+
 
 
     static {
@@ -52,5 +60,12 @@ public class ErrorCodeConstants {
         messages.put(USER_BLOCK_SELF_ERROR, "Нельзя заблокировать себя");
 
         messages.put(USER_UNBLOCK_ERROR, "Ошибка при разблокировке пользователя");
+
+        messages.put(TRAINING_PROGRAM_LIST_ERROR, "Ошибка при получении списка тренировочных программ");
+        messages.put(TRAINING_PROGRAM_INFO_ERROR, "Ошибка при получении тренировочной программы");
+        messages.put(TRAINING_PROGRAM_ADD_ERROR, "Ошибка при добавлении тренировочной программы");
+        messages.put(TRAINING_PROGRAM_UPDATE_ERROR, "Ошибка при изменении тренировочной программы");
+        messages.put(TRAINING_PROGRAM_DELETE_ERROR, "Ошибка при удалении тренировочной программы");
+
     }
 }
