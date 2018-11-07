@@ -44,19 +44,26 @@ public class ErrorCodeConstants {
     public static final ErrorCodeIdentifier TRAINING_DAY_UPDATE_ERROR = TRAINING_DAY.branch("4");
     public static final ErrorCodeIdentifier TRAINING_DAY_DELETE_ERROR = TRAINING_DAY.branch("5");
 
-    public static final ErrorCodeIdentifier PROGRESS = new ErrorCodeIdentifier("3");
+    public static final ErrorCodeIdentifier PROGRESS = new ErrorCodeIdentifier("4");
     public static final ErrorCodeIdentifier PROGRESS_LIST_ERROR = PROGRESS.branch("1");
     public static final ErrorCodeIdentifier PROGRESS_INFO_ERROR = PROGRESS.branch("2");
     public static final ErrorCodeIdentifier PROGRESS_ADD_ERROR = PROGRESS.branch("3");
     public static final ErrorCodeIdentifier PROGRESS_UPDATE_ERROR = PROGRESS.branch("4");
     public static final ErrorCodeIdentifier PROGRESS_DELETE_ERROR = PROGRESS.branch("5");
 
-    public static final ErrorCodeIdentifier RANK = new ErrorCodeIdentifier("3");
+    public static final ErrorCodeIdentifier RANK = new ErrorCodeIdentifier("5");
     public static final ErrorCodeIdentifier RANK_LIST_ERROR = RANK.branch("1");
     public static final ErrorCodeIdentifier RANK_INFO_ERROR = RANK.branch("2");
     public static final ErrorCodeIdentifier RANK_ADD_ERROR = RANK.branch("3");
     public static final ErrorCodeIdentifier RANK_UPDATE_ERROR = RANK.branch("4");
     public static final ErrorCodeIdentifier RANK_DELETE_ERROR = RANK.branch("5");
+
+    public static final ErrorCodeIdentifier LEVEL_DIFFICULTY = new ErrorCodeIdentifier("6");
+    public static final ErrorCodeIdentifier LEVEL_DIFFICULTY_LIST_ERROR = LEVEL_DIFFICULTY.branch("1");
+    public static final ErrorCodeIdentifier LEVEL_DIFFICULTY_INFO_ERROR = LEVEL_DIFFICULTY.branch("2");
+    public static final ErrorCodeIdentifier LEVEL_DIFFICULTY_ADD_ERROR = LEVEL_DIFFICULTY.branch("3");
+    public static final ErrorCodeIdentifier LEVEL_DIFFICULTY_UPDATE_ERROR = LEVEL_DIFFICULTY.branch("4");
+    public static final ErrorCodeIdentifier LEVEL_DIFFICULTY_DELETE_ERROR = LEVEL_DIFFICULTY.branch("5");
 
 
 
@@ -105,6 +112,12 @@ public class ErrorCodeConstants {
         messages.put(RANK_ADD_ERROR, "Ошибка при добавлении звания");
         messages.put(RANK_UPDATE_ERROR, "Ошибка при изменении звания");
         messages.put(RANK_DELETE_ERROR, "Ошибка при удалении звания");
+
+        messages.put(LEVEL_DIFFICULTY_LIST_ERROR, "Ошибка при получении списка всех уровней сложности");
+        messages.put(LEVEL_DIFFICULTY_INFO_ERROR, "Ошибка при получении уровня сложности");
+        messages.put(LEVEL_DIFFICULTY_ADD_ERROR, "Ошибка при добавлении уровня сложности");
+        messages.put(LEVEL_DIFFICULTY_UPDATE_ERROR, "Ошибка при изменении уровня сложности");
+        messages.put(LEVEL_DIFFICULTY_DELETE_ERROR, "Ошибка при удалении уровня сложности");
 
     }
 }
