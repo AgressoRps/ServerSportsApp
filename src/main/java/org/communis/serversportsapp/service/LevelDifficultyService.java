@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Transactional(rollbackFor = ServerException.class)
 public class LevelDifficultyService {
 
-    private LevelDifficultyRepository levelDifficultyRepository;
+    private final LevelDifficultyRepository levelDifficultyRepository;
 
     @Autowired
     public LevelDifficultyService(LevelDifficultyRepository levelDifficultyRepository){
