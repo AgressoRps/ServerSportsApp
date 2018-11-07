@@ -9,7 +9,7 @@ public interface RankRepository extends JpaRepository<Rank, Short> {
 
     /**
      * Метод поиска и получения первого вхождения в таблицу указанного имени
-     * @param name наименование достижения
+     * @param name наименование звания
      * @return экземпляр класса Rank
      */
     Optional<Rank> findFirstByName(String name);

@@ -9,8 +9,8 @@ public interface LevelDifficultyRepository extends JpaRepository<LevelDifficulty
 
     /**
      * Метод поиска и получения первого вхождения в таблицу указанного имени
-     * @param name наименование достижения
-     * @return экземпляр класса Progress
+     * @param name наименование уровня сложности
+     * @return экземпляр класса LevelDifficulty
      */
     Optional<LevelDifficulty> findFirstByName(String name);
 }
