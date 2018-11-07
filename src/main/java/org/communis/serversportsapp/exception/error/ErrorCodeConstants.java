@@ -65,6 +65,13 @@ public class ErrorCodeConstants {
     public static final ErrorCodeIdentifier LEVEL_DIFFICULTY_UPDATE_ERROR = LEVEL_DIFFICULTY.branch("4");
     public static final ErrorCodeIdentifier LEVEL_DIFFICULTY_DELETE_ERROR = LEVEL_DIFFICULTY.branch("5");
 
+    public static final ErrorCodeIdentifier TRAINING_LOCATION = new ErrorCodeIdentifier("7");
+    public static final ErrorCodeIdentifier TRAINING_LOCATION_LIST_ERROR = TRAINING_LOCATION.branch("1");
+    public static final ErrorCodeIdentifier TRAINING_LOCATION_INFO_ERROR = TRAINING_LOCATION.branch("2");
+    public static final ErrorCodeIdentifier TRAINING_LOCATION_ADD_ERROR = TRAINING_LOCATION.branch("3");
+    public static final ErrorCodeIdentifier TRAINING_LOCATION_UPDATE_ERROR = TRAINING_LOCATION.branch("4");
+    public static final ErrorCodeIdentifier TRAINING_LOCATION_DELETE_ERROR = TRAINING_LOCATION.branch("5");
+
 
 
     static {
@@ -118,6 +125,12 @@ public class ErrorCodeConstants {
         messages.put(LEVEL_DIFFICULTY_ADD_ERROR, "Ошибка при добавлении уровня сложности");
         messages.put(LEVEL_DIFFICULTY_UPDATE_ERROR, "Ошибка при изменении уровня сложности");
         messages.put(LEVEL_DIFFICULTY_DELETE_ERROR, "Ошибка при удалении уровня сложности");
+
+        messages.put(TRAINING_LOCATION_LIST_ERROR, "Ошибка при получении списка всех тренировочных локаций");
+        messages.put(TRAINING_LOCATION_INFO_ERROR, "Ошибка при получении тренировочной локации");
+        messages.put(TRAINING_LOCATION_ADD_ERROR, "Ошибка при добавлении тренировочной локации");
+        messages.put(TRAINING_LOCATION_UPDATE_ERROR, "Ошибка при изменении тренировочной локации");
+        messages.put(TRAINING_LOCATION_DELETE_ERROR, "Ошибка при удалении тренировочной локации");
 
     }
 }
