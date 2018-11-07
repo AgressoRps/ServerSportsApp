@@ -72,6 +72,13 @@ public class ErrorCodeConstants {
     public static final ErrorCodeIdentifier TRAINING_LOCATION_UPDATE_ERROR = TRAINING_LOCATION.branch("4");
     public static final ErrorCodeIdentifier TRAINING_LOCATION_DELETE_ERROR = TRAINING_LOCATION.branch("5");
 
+    public static final ErrorCodeIdentifier PROGRESS_USER = new ErrorCodeIdentifier("8");
+    public static final ErrorCodeIdentifier PROGRESS_USER_LIST_ERROR = PROGRESS_USER.branch("1");
+    public static final ErrorCodeIdentifier PROGRESS_USER_INFO_ERROR = PROGRESS_USER.branch("2");
+    public static final ErrorCodeIdentifier PROGRESS_USER_ADD_ERROR = PROGRESS_USER.branch("3");
+    public static final ErrorCodeIdentifier PROGRESS_USER_UPDATE_ERROR = PROGRESS_USER.branch("4");
+    public static final ErrorCodeIdentifier PROGRESS_USER_DELETE_ERROR = PROGRESS_USER.branch("5");
+
 
 
     static {
@@ -131,6 +138,12 @@ public class ErrorCodeConstants {
         messages.put(TRAINING_LOCATION_ADD_ERROR, "Ошибка при добавлении тренировочной локации");
         messages.put(TRAINING_LOCATION_UPDATE_ERROR, "Ошибка при изменении тренировочной локации");
         messages.put(TRAINING_LOCATION_DELETE_ERROR, "Ошибка при удалении тренировочной локации");
+
+        messages.put(TRAINING_LOCATION_LIST_ERROR, "Ошибка при получении списка всех достижений пользователей");
+        messages.put(TRAINING_LOCATION_INFO_ERROR, "Ошибка при получении достижения пользователя");
+        messages.put(TRAINING_LOCATION_ADD_ERROR, "Ошибка при добавлении достижения пользователя");
+        messages.put(TRAINING_LOCATION_UPDATE_ERROR, "Ошибка при изменении достижения пользователя");
+        messages.put(TRAINING_LOCATION_DELETE_ERROR, "Ошибка при удалении достижения пользователя");
 
     }
 }
