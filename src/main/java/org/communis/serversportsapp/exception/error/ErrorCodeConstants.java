@@ -79,6 +79,13 @@ public class ErrorCodeConstants {
     public static final ErrorCodeIdentifier PROGRESS_USER_UPDATE_ERROR = PROGRESS_USER.branch("4");
     public static final ErrorCodeIdentifier PROGRESS_USER_DELETE_ERROR = PROGRESS_USER.branch("5");
 
+    public static final ErrorCodeIdentifier FRIEND = new ErrorCodeIdentifier("9");
+    public static final ErrorCodeIdentifier FRIEND_LIST_ERROR = FRIEND.branch("1");
+    public static final ErrorCodeIdentifier FRIEND_INFO_ERROR = FRIEND.branch("2");
+    public static final ErrorCodeIdentifier FRIEND_ADD_ERROR = FRIEND.branch("3");
+    public static final ErrorCodeIdentifier FRIEND_UPDATE_ERROR = FRIEND.branch("4");
+    public static final ErrorCodeIdentifier FRIEND_DELETE_ERROR = FRIEND.branch("5");
+
 
 
     static {
@@ -139,11 +146,17 @@ public class ErrorCodeConstants {
         messages.put(TRAINING_LOCATION_UPDATE_ERROR, "Ошибка при изменении тренировочной локации");
         messages.put(TRAINING_LOCATION_DELETE_ERROR, "Ошибка при удалении тренировочной локации");
 
-        messages.put(TRAINING_LOCATION_LIST_ERROR, "Ошибка при получении списка всех достижений пользователей");
-        messages.put(TRAINING_LOCATION_INFO_ERROR, "Ошибка при получении достижения пользователя");
-        messages.put(TRAINING_LOCATION_ADD_ERROR, "Ошибка при добавлении достижения пользователя");
-        messages.put(TRAINING_LOCATION_UPDATE_ERROR, "Ошибка при изменении достижения пользователя");
-        messages.put(TRAINING_LOCATION_DELETE_ERROR, "Ошибка при удалении достижения пользователя");
+        messages.put(PROGRESS_USER_LIST_ERROR, "Ошибка при получении списка всех достижений пользователей");
+        messages.put(PROGRESS_USER_INFO_ERROR, "Ошибка при получении достижения пользователя");
+        messages.put(PROGRESS_USER_ADD_ERROR, "Ошибка при добавлении достижения пользователя");
+        messages.put(PROGRESS_USER_UPDATE_ERROR, "Ошибка при изменении достижения пользователя");
+        messages.put(PROGRESS_USER_DELETE_ERROR, "Ошибка при удалении достижения пользователя");
+
+        messages.put(FRIEND_LIST_ERROR, "Ошибка при получении списка всех друзей");
+        messages.put(FRIEND_INFO_ERROR, "Ошибка при получении информации о друге");
+        messages.put(FRIEND_ADD_ERROR, "Ошибка при добавлении нового друга");
+        messages.put(FRIEND_UPDATE_ERROR, "Ошибка при изменении друга");
+        messages.put(FRIEND_DELETE_ERROR, "Ошибка при удалении друга");
 
     }
 }
