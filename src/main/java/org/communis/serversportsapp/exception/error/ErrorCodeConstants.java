@@ -114,6 +114,14 @@ public class ErrorCodeConstants {
     public static final ErrorCodeIdentifier TRAINING_DAY_CONTENT_UPDATE_ERROR = TRAINING_DAY_CONTENT.branch("4");
     public static final ErrorCodeIdentifier TRAINING_DAY_CONTENT_DELETE_ERROR = TRAINING_DAY_CONTENT.branch("5");
 
+    public static final ErrorCodeIdentifier STATISTICS = new ErrorCodeIdentifier("14");
+    public static final ErrorCodeIdentifier STATISTICS_LIST_ERROR = STATISTICS.branch("1");
+    public static final ErrorCodeIdentifier STATISTICS_INFO_ERROR = STATISTICS.branch("2");
+    public static final ErrorCodeIdentifier STATISTICS_ADD_ERROR = STATISTICS.branch("3");
+    public static final ErrorCodeIdentifier STATISTICS_UPDATE_ERROR = STATISTICS.branch("4");
+    public static final ErrorCodeIdentifier STATISTICS_DELETE_ERROR = STATISTICS.branch("5");
+
+
 
 
     static {
@@ -209,5 +217,11 @@ public class ErrorCodeConstants {
         messages.put(TRAINING_DAY_CONTENT_ADD_ERROR, "Ошибка при добавлении содержания тренировочного дня");
         messages.put(TRAINING_DAY_CONTENT_UPDATE_ERROR, "Ошибка при изменении содержания тренировочного дня");
         messages.put(TRAINING_DAY_CONTENT_DELETE_ERROR, "Ошибка при удалении содержания тренировочного дня");
+
+        messages.put(STATISTICS_LIST_ERROR, "Ошибка при получении списка с информацией о статистике пользователя");
+        messages.put(STATISTICS_INFO_ERROR, "Ошибка при получении подробной информации статистики указанной тренировки");
+        messages.put(STATISTICS_ADD_ERROR, "Ошибка при добавлении статистики");
+        messages.put(STATISTICS_UPDATE_ERROR, "Ошибка при изменении статистики");
+        messages.put(STATISTICS_DELETE_ERROR, "Ошибка при удалении статистики");
     }
 }
