@@ -100,6 +100,13 @@ public class ErrorCodeConstants {
     public static final ErrorCodeIdentifier DAY_UPDATE_ERROR = DAY.branch("4");
     public static final ErrorCodeIdentifier DAY_DELETE_ERROR = DAY.branch("5");
 
+    public static final ErrorCodeIdentifier EXERCISE = new ErrorCodeIdentifier("12");
+    public static final ErrorCodeIdentifier EXERCISE_LIST_ERROR = EXERCISE.branch("1");
+    public static final ErrorCodeIdentifier EXERCISE_INFO_ERROR = EXERCISE.branch("2");
+    public static final ErrorCodeIdentifier EXERCISE_ADD_ERROR = EXERCISE.branch("3");
+    public static final ErrorCodeIdentifier EXERCISE_UPDATE_ERROR = EXERCISE.branch("4");
+    public static final ErrorCodeIdentifier EXERCISE_DELETE_ERROR = EXERCISE.branch("5");
+
 
 
     static {
@@ -183,5 +190,11 @@ public class ErrorCodeConstants {
         messages.put(DAY_ADD_ERROR, "Ошибка при добавлении нового дня");
         messages.put(DAY_UPDATE_ERROR, "Ошибка при изменении дня");
         messages.put(DAY_DELETE_ERROR, "Ошибка при удалении дня");
+
+        messages.put(EXERCISE_LIST_ERROR, "Ошибка при получении списка упражнений");
+        messages.put(EXERCISE_INFO_ERROR, "Ошибка при получении информации об упражнении");
+        messages.put(EXERCISE_ADD_ERROR, "Ошибка при добавлении нового упражнения");
+        messages.put(EXERCISE_UPDATE_ERROR, "Ошибка при изменении упражнения");
+        messages.put(EXERCISE_DELETE_ERROR, "Ошибка при удалении упражнения");
     }
 }
