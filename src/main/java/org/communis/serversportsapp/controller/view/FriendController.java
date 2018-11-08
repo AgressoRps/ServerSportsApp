@@ -25,8 +25,8 @@ public class FriendController  {
         this.friendService = friendService;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<FriendWrapper> getAllFriendsUser(@PathVariable("{id}") Long id) throws ServerException{
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public List<FriendWrapper> getAllFriendsUser(@PathVariable("id") Long id) throws ServerException{
         UserApp userApp = new UserApp();
         userApp.setId(id);
         return friendService.getAllFriendsUser(userApp);

@@ -24,9 +24,9 @@ public class RankUserController {
     public RankUserController(RankUserService rankUserService){
         this.rankUserService = rankUserService;
     }
-    
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<RankUserWrapper> getAllRanksUser(@PathVariable("{id}") Long id) throws ServerException{
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public List<RankUserWrapper> getAllRanksUser(@PathVariable("id") Long id) throws ServerException{
         UserApp userApp = new UserApp();
         userApp.setId(id);
         return rankUserService.getAllRanksUser(userApp);

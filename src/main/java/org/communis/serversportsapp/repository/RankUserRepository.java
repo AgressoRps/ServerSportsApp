@@ -15,6 +15,6 @@ public interface RankUserRepository extends JpaRepository<RankUser, Long> {
      * @param user пользователь приложения, экземпляр класса UserApp
      * @return список экземпляров класса RankUser
      */
-    @Query(value = "FROM RankUser rank WHERE rank.user =:user")
+    @Query(value = "FROM RankUser rankUser WHERE rankUser.user =:user")
     List<RankUser> findAllByUser(@Param("user") UserApp user);
 }
