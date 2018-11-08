@@ -1,6 +1,7 @@
 package org.communis.serversportsapp.service;
 
 import org.communis.serversportsapp.dto.ProgressUserWrapper;
+import org.communis.serversportsapp.dto.UserAppWrapper;
 import org.communis.serversportsapp.entity.UserApp;
 import org.communis.serversportsapp.exception.ServerException;
 import org.communis.serversportsapp.exception.error.ErrorCodeConstants;
