@@ -107,6 +107,13 @@ public class ErrorCodeConstants {
     public static final ErrorCodeIdentifier EXERCISE_UPDATE_ERROR = EXERCISE.branch("4");
     public static final ErrorCodeIdentifier EXERCISE_DELETE_ERROR = EXERCISE.branch("5");
 
+    public static final ErrorCodeIdentifier TRAINING_DAY_CONTENT = new ErrorCodeIdentifier("13");
+    public static final ErrorCodeIdentifier TRAINING_DAY_CONTENT_LIST_ERROR = TRAINING_DAY_CONTENT.branch("1");
+    public static final ErrorCodeIdentifier TRAINING_DAY_CONTENT_INFO_ERROR = TRAINING_DAY_CONTENT.branch("2");
+    public static final ErrorCodeIdentifier TRAINING_DAY_CONTENT_ADD_ERROR = TRAINING_DAY_CONTENT.branch("3");
+    public static final ErrorCodeIdentifier TRAINING_DAY_CONTENT_UPDATE_ERROR = TRAINING_DAY_CONTENT.branch("4");
+    public static final ErrorCodeIdentifier TRAINING_DAY_CONTENT_DELETE_ERROR = TRAINING_DAY_CONTENT.branch("5");
+
 
 
     static {
@@ -196,5 +203,11 @@ public class ErrorCodeConstants {
         messages.put(EXERCISE_ADD_ERROR, "Ошибка при добавлении нового упражнения");
         messages.put(EXERCISE_UPDATE_ERROR, "Ошибка при изменении упражнения");
         messages.put(EXERCISE_DELETE_ERROR, "Ошибка при удалении упражнения");
+
+        messages.put(TRAINING_DAY_CONTENT_LIST_ERROR, "Ошибка при получении списка содержания тренировочного дня");
+        messages.put(TRAINING_DAY_CONTENT_INFO_ERROR, "Ошибка при получении информации о содержании тренировочного дня");
+        messages.put(TRAINING_DAY_CONTENT_ADD_ERROR, "Ошибка при добавлении содержания тренировочного дня");
+        messages.put(TRAINING_DAY_CONTENT_UPDATE_ERROR, "Ошибка при изменении содержания тренировочного дня");
+        messages.put(TRAINING_DAY_CONTENT_DELETE_ERROR, "Ошибка при удалении содержания тренировочного дня");
     }
 }
