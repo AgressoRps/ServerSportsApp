@@ -86,6 +86,13 @@ public class ErrorCodeConstants {
     public static final ErrorCodeIdentifier FRIEND_UPDATE_ERROR = FRIEND.branch("4");
     public static final ErrorCodeIdentifier FRIEND_DELETE_ERROR = FRIEND.branch("5");
 
+    public static final ErrorCodeIdentifier RANK_USER = new ErrorCodeIdentifier("10");
+    public static final ErrorCodeIdentifier RANK_USER_LIST_ERROR = RANK_USER.branch("1");
+    public static final ErrorCodeIdentifier RANK_USER_INFO_ERROR = RANK_USER.branch("2");
+    public static final ErrorCodeIdentifier RANK_USER_ADD_ERROR = RANK_USER.branch("3");
+    public static final ErrorCodeIdentifier RANK_USER_UPDATE_ERROR = RANK_USER.branch("4");
+    public static final ErrorCodeIdentifier RANK_USER_DELETE_ERROR = RANK_USER.branch("5");
+
 
 
     static {
@@ -157,6 +164,12 @@ public class ErrorCodeConstants {
         messages.put(FRIEND_ADD_ERROR, "Ошибка при добавлении нового друга");
         messages.put(FRIEND_UPDATE_ERROR, "Ошибка при изменении друга");
         messages.put(FRIEND_DELETE_ERROR, "Ошибка при удалении друга");
+
+        messages.put(RANK_USER_LIST_ERROR, "Ошибка при получении списка всех рангов пользователя");
+        messages.put(RANK_USER_INFO_ERROR, "Ошибка при получении информации о ранге пользователя");
+        messages.put(RANK_USER_ADD_ERROR, "Ошибка при добавлении нового ранга пользователю");
+        messages.put(RANK_USER_UPDATE_ERROR, "Ошибка при изменении ранга пользователя");
+        messages.put(RANK_USER_DELETE_ERROR, "Ошибка при удалении ранга пользователя");
 
     }
 }
