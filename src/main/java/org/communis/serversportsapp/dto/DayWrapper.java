@@ -15,6 +15,10 @@ public class DayWrapper implements ObjectWrapper<Day>, Serializable {
         toWrapper(day);
     }
 
+    /**
+     * Добавление данных объекта Day в объект DayWrapper
+     * @param item - экземпляр объекта Day
+     */
     @Override
     public void toWrapper(Day item) {
         if (item != null){
@@ -23,6 +27,10 @@ public class DayWrapper implements ObjectWrapper<Day>, Serializable {
         }
     }
 
+    /**
+     * Получение допустимой информации об объекте, для отправки клиенту
+     * @param item - экземпляр объекта DayUser, содержит только допустимые для отправки данные
+     */
     @Override
     public void fromWrapper(Day item) {
         if (item != null){
