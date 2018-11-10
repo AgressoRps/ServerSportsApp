@@ -16,7 +16,7 @@ import java.util.List;
 
 @Log4j2
 @RestController
-@RequestMapping("/progressUser")
+@RequestMapping("/progress/user")
 public class ProgressUserController {
 
     private final ProgressUserService progressUserService;
@@ -26,11 +26,16 @@ public class ProgressUserController {
         this.progressUserService = progressUserService;
     }
 
+    /**
+     * Метод реагирует на запрос /progress/user/{id}, выполняет запрос к бд
+     * для получения списка всех достижений пользователя
+     * @param id идентификатор пользователя, достижения которого необходимо получить
+     * @return список экземпляров класса ProgressUserWrapper (список достижений пользователя)
+     * @throws ServerException в случае ошибки генерирует исключение
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public List<ProgressUserWrapper> getAllProgressUser(@PathVariable("id") Long id) throws ServerException {
-        UserApp userApp = new UserApp();
-        userApp.setId(id);
-        return progressUserService.getAllProgressUser(userApp);
+        return progressUserService.getAllProgressUser(id);
     }
 
 }

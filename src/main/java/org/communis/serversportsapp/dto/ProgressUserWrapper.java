@@ -11,8 +11,10 @@ import java.io.Serializable;
 public class ProgressUserWrapper implements ObjectWrapper<ProgressUser>, Serializable {
 
     private Long id;
-    private UserApp user;
-    private Progress progress;
+    private Long userID;
+    private ProgressWrapper progressWrapper = new ProgressWrapper();
+
+    public ProgressUserWrapper(){}
 
     public ProgressUserWrapper(ProgressUser progressUser){
         toWrapper(progressUser);
@@ -26,8 +28,8 @@ public class ProgressUserWrapper implements ObjectWrapper<ProgressUser>, Seriali
     public void toWrapper(ProgressUser item) {
         if (item != null){
             id = item.getId();
-            user = item.getUser();
-            progress = item.getProgress();
+            userID = item.getUserID();
+            progressWrapper = new ProgressWrapper(item.getProgress());
         }
     }
 
@@ -39,8 +41,10 @@ public class ProgressUserWrapper implements ObjectWrapper<ProgressUser>, Seriali
     public void fromWrapper(ProgressUser item) {
         if (item != null){
             item.setId(id);
-            item.setUser(user);
-            item.setProgress(progress);
+            item.setUserID(userID);
+            Progress progressAttr = new Progress();
+            progressWrapper.fromWrapper(progressAttr);
+            item.setProgress(progressAttr);
         }
     }
 }

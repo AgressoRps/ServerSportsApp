@@ -12,9 +12,8 @@ public interface ProgressUserRepository extends JpaRepository<ProgressUser, Long
 
     /**
      * Метод поиска и получения всех данных связанных с переданным пользователем
-     * @param user пользователь приложения, экземпляр класса UserApp
-     * @return список экземпляров класса ProgressUser
+     * @param userID идентификатор пользователя
+     * @return список экземпляров класса ProgressUser (список достижений пользователя)
      */
-    @Query(value = "FROM ProgressUser progress WHERE progress.user =:user")
-    List<ProgressUser> findAllByUser(@Param("user") UserApp user);
+    List<ProgressUser> findAllByUserID(Long userID);
 }

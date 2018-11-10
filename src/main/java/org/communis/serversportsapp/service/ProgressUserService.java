@@ -25,9 +25,15 @@ public class ProgressUserService {
         this.progressUserRepository = progressUserRepository;
     }
 
-    public List<ProgressUserWrapper> getAllProgressUser(UserApp userApp) throws ServerException{
+    /**
+     * Метод получения всех достижений требуемого пользователя
+     * @param id идентификатор пользователя, достижения которого необходимо получить
+     * @return список экземпляров класса ProgressUserWrapper (список достижений пользователя)
+     * @throws ServerException в случае ошибки генерирует исключение с кодом PROGRESS_USER_LIST_ERROR
+     */
+    public List<ProgressUserWrapper> getAllProgressUser(Long id) throws ServerException{
         try{
-            return progressUserRepository.findAllByUser(userApp).stream().map(ProgressUserWrapper::new).collect(Collectors.toList());
+            return progressUserRepository.findAllByUserID(id).stream().map(ProgressUserWrapper::new).collect(Collectors.toList());
         }catch (Exception ex){
             throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.PROGRESS_USER_LIST_ERROR), ex);
         }
