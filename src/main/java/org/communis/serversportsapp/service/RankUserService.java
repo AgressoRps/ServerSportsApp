@@ -25,9 +25,15 @@ public class RankUserService {
         this.rankUserRepository = rankUserRepository;
     }
 
-    public List<RankUserWrapper> getAllRanksUser(UserApp userApp) throws ServerException{
+    /**
+     * Метод получения всех званий указанного пользователя
+     * @param id идентификатор пользователя
+     * @return список экземпляров объекта RankUserWrapper (список всех званий)
+     * @throws ServerException в случае ошибки генерирует исключение с кодом RANK_USER_LIST_ERROR
+     */
+    public List<RankUserWrapper> getAllRanksUser(Long id) throws ServerException{
         try {
-            return rankUserRepository.findAllByUser(userApp).stream().map(RankUserWrapper::new).collect(Collectors.toList());
+            return rankUserRepository.findAllByUserID(id).stream().map(RankUserWrapper::new).collect(Collectors.toList());
         } catch (Exception ex){
             throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.RANK_USER_LIST_ERROR), ex);
         }

@@ -15,7 +15,7 @@ import java.util.List;
 
 @Log4j2
 @RestController
-@RequestMapping(value = "/myRanks")
+@RequestMapping(value = "/ranks/user")
 public class RankUserController {
 
     private final RankUserService rankUserService;
@@ -25,11 +25,16 @@ public class RankUserController {
         this.rankUserService = rankUserService;
     }
 
+    /**
+     * Метод реагирует на запрос /ranks/user/{id}, выполняет запрос к бд для получения
+     * всех званий пользователя
+     * @param id идентификатор пользователя
+     * @return список экземпляров класса RankUserWrapper (список всех званий указанного пользователя)
+     * @throws ServerException в случае ошибки генерирует исключение
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public List<RankUserWrapper> getAllRanksUser(@PathVariable("id") Long id) throws ServerException{
-        UserApp userApp = new UserApp();
-        userApp.setId(id);
-        return rankUserService.getAllRanksUser(userApp);
+        return rankUserService.getAllRanksUser(id);
     }
 
 }

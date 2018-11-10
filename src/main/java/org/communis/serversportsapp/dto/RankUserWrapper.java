@@ -11,8 +11,10 @@ import java.io.Serializable;
 public class RankUserWrapper implements ObjectWrapper<RankUser>, Serializable {
 
     private Long id;
-    private UserApp userApp;
-    private Rank rank;
+    private Long userID;
+    private RankWrapper rankWrapper = new RankWrapper();
+
+    public RankUserWrapper(){}
 
     public RankUserWrapper (RankUser rankUser){
         toWrapper(rankUser);
@@ -26,8 +28,8 @@ public class RankUserWrapper implements ObjectWrapper<RankUser>, Serializable {
     public void toWrapper(RankUser item) {
         if (item != null){
             id = item.getId();
-            userApp = item.getUser();
-            rank = item.getRank();
+            userID = item.getUserID();
+            rankWrapper = new RankWrapper(item.getRank());
         }
     }
 
@@ -39,8 +41,11 @@ public class RankUserWrapper implements ObjectWrapper<RankUser>, Serializable {
     public void fromWrapper(RankUser item) {
         if (item != null){
             item.setId(id);
-            item.setUser(userApp);
-            item.setRank(rank);
+            item.setUserID(userID);
+
+            Rank rankAttr = new Rank();
+            rankWrapper.fromWrapper(rankAttr);
+            item.setRank(rankAttr);
         }
     }
 }
