@@ -14,9 +14,8 @@ public class Exercise {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Short id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_training_location")
-    private TrainingLocation trainingLocation;
+    @Column(name = "id_training_location")
+    private Short trainingLocationID;
 
     @Column(name = "exercise_name")
     private String name;

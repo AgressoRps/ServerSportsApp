@@ -25,16 +25,12 @@ public class ExerciseController {
 
     @RequestMapping(value = "/location/{id}", method = RequestMethod.GET)
     public List<ExerciseWrapper> getAllExercisesByTrainingLocation(@PathVariable("id") Short id) throws ServerException{
-        TrainingLocation trainingLocation = new TrainingLocation();
-        trainingLocation.setId(id);
-        return exerciseService.getAllExercisesByTrainingLocation(trainingLocation);
+        return exerciseService.getAllExercisesByTrainingLocation(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ExerciseWrapper getById(@PathVariable("id") Short id) throws ServerException{
         return exerciseService.getById(id);
     }
-
-    //@RequestMapping(value = "/{name}",)
 
 }

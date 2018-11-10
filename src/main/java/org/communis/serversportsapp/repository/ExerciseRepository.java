@@ -13,11 +13,10 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Short> {
 
     /**
      * Метод поиска и получения всех упражнений связанных с переданной локацией
-     * @param trainingLocation локация проведения тренировки, экземпляр класса TrainingLocation
+     * @param trainingLocationID идентификатор локации
      * @return список экземпляров класса Exercise
      */
-    @Query(value = "FROM Exercise exercise WHERE exercise.trainingLocation =:location")
-    List<Exercise> findAllByTrainingLocation(@Param("location")TrainingLocation trainingLocation);
+    List<Exercise> findAllByTrainingLocationID(Short trainingLocationID);
 
     /**
      * Метод поиска и получения одного упражнения с указанным идентификатором

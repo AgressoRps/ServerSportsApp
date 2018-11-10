@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class ExerciseWrapper implements ObjectWrapper<Exercise>, Serializable {
 
     private Short id;
-    private TrainingLocationWrapper trainingLocation = new TrainingLocationWrapper();
+    private Short trainingLocationID;
     private String name;
     private String photoName;
     private ExerciseTimeState exerciseTimeState;
@@ -28,7 +28,7 @@ public class ExerciseWrapper implements ObjectWrapper<Exercise>, Serializable {
     public void toWrapper(Exercise item) {
         if (item != null){
             id = item.getId();
-            trainingLocation = new TrainingLocationWrapper(item.getTrainingLocation());
+            trainingLocationID = item.getTrainingLocationID();
             name = item.getName();
             photoName = item.getPhotoName();
             exerciseTimeState = item.getExerciseTimeState();
@@ -43,11 +43,7 @@ public class ExerciseWrapper implements ObjectWrapper<Exercise>, Serializable {
     public void fromWrapper(Exercise item) {
         if (item != null){
             item.setId(id);
-
-            TrainingLocation trainingLocationAttr = new TrainingLocation();
-            trainingLocation.fromWrapper(trainingLocationAttr);
-            item.setTrainingLocation(trainingLocationAttr);
-
+            item.setTrainingLocationID(trainingLocationID);
             item.setName(name);
             item.setPhotoName(photoName);
             item.setExerciseTimeState(exerciseTimeState);

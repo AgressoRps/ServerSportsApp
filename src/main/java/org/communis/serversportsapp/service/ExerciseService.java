@@ -28,13 +28,13 @@ public class ExerciseService {
 
     /**
      * Метод поиска и получения списка упражнений указанной локации
-     * @param trainingLocation экземпляр класса TrainingLocation, содержит информацию о требуемой локации упражнений
+     * @param id идентификатор тренировочной локации
      * @return список экземпляров класса ExerciseWrapper
      * @throws ServerException генерирует исключение с кодом EXERCISE_LIST_ERROR
      */
-    public List<ExerciseWrapper> getAllExercisesByTrainingLocation(TrainingLocation trainingLocation) throws ServerException{
+    public List<ExerciseWrapper> getAllExercisesByTrainingLocationId(Short id) throws ServerException{
         try{
-            return exerciseRepository.findAllByTrainingLocation(trainingLocation).stream().map(ExerciseWrapper::new).collect(Collectors.toList());
+            return exerciseRepository.findAllByTrainingLocationID(id).stream().map(ExerciseWrapper::new).collect(Collectors.toList());
         }catch (Exception ex){
             throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.EXERCISE_LIST_ERROR), ex);
         }
