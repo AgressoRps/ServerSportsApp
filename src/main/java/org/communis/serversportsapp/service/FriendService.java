@@ -25,6 +25,12 @@ public class FriendService {
         this.friendRepository = friendRepository;
     }
 
+    /**
+     * Метод поиска всех друзей указанного пользователя
+     * @param id идентификатор пользователя
+     * @return список экземпляров класса FriendWrapper (список друзей)
+     * @throws ServerException генерирует исключение с кодом FRIEND_LIST_ERROR
+     */
     public List<FriendWrapper> getAllFriendsUser(Long id) throws ServerException{
         try{
             return friendRepository.findAllByUserID(id).stream().map(FriendWrapper::new).collect(Collectors.toList());

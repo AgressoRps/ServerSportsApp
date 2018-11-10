@@ -23,11 +23,24 @@ public class ExerciseController {
         this.exerciseService = exerciseService;
     }
 
+    /**
+     * Метод реагирует на запрос /exercise/location/{id}, выполняет запрос к бд для получения списка всех
+     * упражнений с указанной локацией
+     * @param id идентификатор локации
+     * @return список экземпляров ExerciseWrapper (упражнений)
+     * @throws ServerException в случае ошибки генерирует исключение
+     */
     @RequestMapping(value = "/location/{id}", method = RequestMethod.GET)
     public List<ExerciseWrapper> getAllExercisesByTrainingLocation(@PathVariable("id") Short id) throws ServerException{
-        return exerciseService.getAllExercisesByTrainingLocation(id);
+        return exerciseService.getAllExercisesByTrainingLocationId(id);
     }
 
+    /**
+     * Метод реагирует на запрос /exrcise/{id}, выполняет запрос к бд для получения единичного экземпляра упражнения
+     * @param id идентификатор упражнения
+     * @return экземпляр класса ExerciseWrapper содержащий данные о найденном в бд упражнении
+     * @throws ServerException в случае ошибки генерирует исключение
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ExerciseWrapper getById(@PathVariable("id") Short id) throws ServerException{
         return exerciseService.getById(id);

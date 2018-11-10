@@ -11,11 +11,10 @@ import java.util.List;
 public interface FriendRepository extends JpaRepository<Friend, Long> {
 
     /**
-     * Метод поиска и получения всех данных таблицы связанных с запрашиваемым
-     * @param user идентификатор пользователя приложения
-     * @return список экземпляров класса Friend
+     * Метод поиска и получения всех данных таблицы связанных с запрашиваемым пользователем
+     * @param userID идентификатор пользователя приложения
+     * @return список экземпляров класса Friend (список друзей)
      */
-    @Query(value = "FROM Friend fr WHERE fr.userID =:user")
-    List<Friend> findAllByUserID(@Param("user") Long user);
+    List<Friend> findAllByUserID(Long userID);
 
 }

@@ -15,7 +15,7 @@ import java.util.List;
 
 @Log4j2
 @RestController
-@RequestMapping("/myFriends")
+@RequestMapping("/friends")
 public class FriendController  {
 
     private final FriendService friendService;
@@ -25,6 +25,12 @@ public class FriendController  {
         this.friendService = friendService;
     }
 
+    /**
+     * Метод реагирует на запрос /friends/{id}, выполняет запрос к бд, возвращает список друзей указанного пользователя
+     * @param id идентификатор пользователя
+     * @return список экзепляров класса FriendWrapper (список друзей)
+     * @throws ServerException в случае ошибки генерирует исключение
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public List<FriendWrapper> getAllFriendsUser(@PathVariable("id") Long id) throws ServerException{
         return friendService.getAllFriendsUser(id);
