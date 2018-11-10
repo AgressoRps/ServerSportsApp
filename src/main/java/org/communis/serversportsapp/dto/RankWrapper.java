@@ -11,6 +11,8 @@ public class RankWrapper implements ObjectWrapper<Rank>, Serializable {
     private Short id;
     private String name;
 
+    public RankWrapper(){}
+
     public RankWrapper(Rank rank){
         toWrapper(rank);
     }
