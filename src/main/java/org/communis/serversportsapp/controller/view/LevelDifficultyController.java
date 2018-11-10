@@ -43,6 +43,6 @@ public class LevelDifficultyController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public LevelDifficultyWrapper getById(@PathVariable("id") Short id) throws ServerException{
-        return null; //TODO
+        return levelDifficultyService.getById(id);
     }
 }

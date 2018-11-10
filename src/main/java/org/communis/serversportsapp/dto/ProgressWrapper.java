@@ -11,6 +11,8 @@ public class ProgressWrapper implements ObjectWrapper<Progress>, Serializable {
     private Short id;
     private String name;
 
+    public ProgressWrapper(){}
+
     public ProgressWrapper(Progress progress){
         toWrapper(progress);
     }
