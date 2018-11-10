@@ -11,6 +11,8 @@ public class TrainingLocationWrapper implements ObjectWrapper<TrainingLocation>,
     private Short id;
     private String name;
 
+    public TrainingLocationWrapper(){}
+
     public TrainingLocationWrapper(TrainingLocation trainingLocation){
         toWrapper(trainingLocation);
     }

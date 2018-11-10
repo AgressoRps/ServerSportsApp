@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class ExerciseWrapper implements ObjectWrapper<Exercise>, Serializable {
 
     private Short id;
-    private TrainingLocation trainingLocation;
+    private TrainingLocationWrapper trainingLocation = new TrainingLocationWrapper();
     private String name;
     private String photoName;
     private ExerciseTimeState exerciseTimeState;
@@ -20,22 +20,34 @@ public class ExerciseWrapper implements ObjectWrapper<Exercise>, Serializable {
         toWrapper(exercise);
     }
 
+    /**
+     * Добавление данных объекта Exercise в объект Exercise Wrapper
+     * @param item - экземпляр объекта Exercise
+     */
     @Override
     public void toWrapper(Exercise item) {
         if (item != null){
             id = item.getId();
-            trainingLocation = item.getTrainingLocation();
+            trainingLocation = new TrainingLocationWrapper(item.getTrainingLocation());
             name = item.getName();
             photoName = item.getPhotoName();
             exerciseTimeState = item.getExerciseTimeState();
         }
     }
 
+    /**
+     * Получение допустимой информации об объекте, для отправки клиенту
+     * @param item - экземпляр объекта Exercise, содержит только допустимые для отправки данные
+     */
     @Override
     public void fromWrapper(Exercise item) {
         if (item != null){
             item.setId(id);
-            item.setTrainingLocation(trainingLocation);
+
+            TrainingLocation trainingLocationAttr = new TrainingLocation();
+            trainingLocation.fromWrapper(trainingLocationAttr);
+            item.setTrainingLocation(trainingLocationAttr);
+
             item.setName(name);
             item.setPhotoName(photoName);
             item.setExerciseTimeState(exerciseTimeState);

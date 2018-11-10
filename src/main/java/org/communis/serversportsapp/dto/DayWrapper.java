@@ -29,7 +29,7 @@ public class DayWrapper implements ObjectWrapper<Day>, Serializable {
 
     /**
      * Получение допустимой информации об объекте, для отправки клиенту
-     * @param item - экземпляр объекта DayUser, содержит только допустимые для отправки данные
+     * @param item - экземпляр объекта Day, содержит только допустимые для отправки данные
      */
     @Override
     public void fromWrapper(Day item) {

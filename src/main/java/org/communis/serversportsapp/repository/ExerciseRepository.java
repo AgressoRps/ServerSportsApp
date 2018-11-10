@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ExerciseRepository extends JpaRepository<Exercise, Short> {
 
@@ -17,4 +18,19 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Short> {
      */
     @Query(value = "FROM Exercise exercise WHERE exercise.trainingLocation =:location")
     List<Exercise> findAllByTrainingLocation(@Param("location")TrainingLocation trainingLocation);
+
+    /**
+     * Метод поиска и получения одного упражнения с указанным идентификатором
+     * @param id идентификатор требуемого упражнения
+     * @return экземпляр класса Exercise
+     */
+    Optional<Exercise> findById(Short id);
+
+    /**
+     * Метод поиска и получения списка упражнений по имени
+     * @param name наименование упражнения
+     * @return список экземпляров класса Exercise
+     */
+    List<Exercise> findAllByNameLikeIgnoreCase(String name);
+
 }
