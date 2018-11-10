@@ -13,9 +13,8 @@ public class Friend {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_user")
-    private UserApp user;
+    @Column(name = "id_user")
+    private Long userID;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_friend")

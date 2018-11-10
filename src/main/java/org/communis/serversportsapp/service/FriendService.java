@@ -25,9 +25,9 @@ public class FriendService {
         this.friendRepository = friendRepository;
     }
 
-    public List<FriendWrapper> getAllFriendsUser(UserApp userApp) throws ServerException{
+    public List<FriendWrapper> getAllFriendsUser(Long id) throws ServerException{
         try{
-            return friendRepository.findAllByUser(userApp).stream().map(FriendWrapper::new).collect(Collectors.toList());
+            return friendRepository.findAllByUserID(id).stream().map(FriendWrapper::new).collect(Collectors.toList());
         }catch (Exception ex){
             throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.FRIEND_LIST_ERROR), ex);
         }
