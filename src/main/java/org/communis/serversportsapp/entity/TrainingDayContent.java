@@ -13,9 +13,8 @@ public class TrainingDayContent {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_training_day")
-    private TrainingDay trainingDay;
+    @Column(name = "id_training_day")
+    private Long trainingDayID;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_exercise")
