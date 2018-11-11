@@ -13,10 +13,10 @@ import java.util.Date;
 public class StatisticsWrapper implements ObjectWrapper<Statistics>, Serializable {
 
     private Long id;
-    private UserApp userApp;
-    private TrainingLocation trainingLocation;
-    private TrainingProgram trainingProgram;
-    private TrainingDay trainingDay;
+    private Long userID;
+    private Short trainingLocationID;
+    private Long trainingProgramID;
+    private Long trainingDayID;
     private Integer timeSpent;
     private Short numberApproaches;
     private Integer metersTraveled;
@@ -38,10 +38,10 @@ public class StatisticsWrapper implements ObjectWrapper<Statistics>, Serializabl
     public void toWrapper(Statistics item) {
         if (item != null){
             id = item.getId();
-            userApp = item.getUser();
-            trainingLocation = item.getTrainingLocation();
-            trainingProgram = item.getTrainingProgram();
-            trainingDay = item.getTrainingDay();
+            userID = item.getUserID();
+            trainingLocationID = item.getTrainingLocationID();
+            trainingProgramID = item.getTrainingProgramID();
+            trainingDayID = item.getTrainingDayID();
             timeSpent = item.getTimeSpent();
             numberApproaches = item.getNumberApproaches();
             metersTraveled = item.getMetersTraveled();
@@ -61,10 +61,10 @@ public class StatisticsWrapper implements ObjectWrapper<Statistics>, Serializabl
     public void fromWrapper(Statistics item) {
         if (item != null){
             item.setId(id);
-            item.setUser(userApp);
-            item.setTrainingLocation(trainingLocation);
-            item.setTrainingProgram(trainingProgram);
-            item.setTrainingDay(trainingDay);
+            item.setUserID(userID);
+            item.setTrainingLocationID(trainingLocationID);
+            item.setTrainingProgramID(trainingProgramID);
+            item.setTrainingDayID(trainingDayID);
             item.setTimeSpent(timeSpent);
             item.setNumberApproaches(numberApproaches);
             item.setMetersTraveled(metersTraveled);

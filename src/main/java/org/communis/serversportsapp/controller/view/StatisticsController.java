@@ -25,11 +25,17 @@ public class StatisticsController {
         this.statisticsService = statisticsService;
     }
 
+    /**
+     * Метод реагирует на запрос /statistics/{id}, выполняет запрос к бд для получения
+     * всей статистики указанного пользователя
+     * @param id идентификатор пользователя, статистику которого необходимо получить
+     * @return список экземпляров класса StatisticsWrapper (список всей статистики пользователя)
+     * @throws ServerException в случае ошибки генерирует исключение
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public List<StatisticsWrapper> getAllStatisticsByUser(@PathVariable("id") Long id) throws ServerException{
-        UserApp userApp = new UserApp();
-        userApp.setId(id);
-        return statisticsService.getAllStatisticsByUser(userApp);
+        return statisticsService.getAllStatisticsByUser(id);
     }
 
+    //TODO TODO TODO
 }
