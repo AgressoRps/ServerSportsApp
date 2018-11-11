@@ -16,6 +16,8 @@ public class ExerciseWrapper implements ObjectWrapper<Exercise>, Serializable {
     private String photoName;
     private ExerciseTimeState exerciseTimeState;
 
+    public ExerciseWrapper(){}
+
     public ExerciseWrapper(Exercise exercise){
         toWrapper(exercise);
     }
