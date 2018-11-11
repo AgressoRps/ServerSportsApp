@@ -13,9 +13,9 @@ import java.io.Serializable;
 public class TrainingProgramWrapper implements ObjectWrapper<TrainingProgram>, Serializable{
 
     private Long id;
-    private UserApp user;
-    private TrainingLocation trainingLocation;
-    private LevelDifficulty levelDifficulty;
+    private Long userID;
+    private Short trainingLocationID;
+    private LevelDifficultyWrapper levelDifficultyWrapper = new LevelDifficultyWrapper();
     private String trainingProgramName;
     private String photoName;
     private Short timeBetweenExecution;
@@ -38,9 +38,9 @@ public class TrainingProgramWrapper implements ObjectWrapper<TrainingProgram>, S
     public void toWrapper(TrainingProgram item) {
         if (item != null){
             id = item.getId();
-            user = item.getUser();
-            trainingLocation = item.getTrainingLocation();
-            levelDifficulty = item.getLevelDifficulty();
+            userID = item.getUserID();
+            trainingLocationID = item.getTrainingLocationID();
+            levelDifficultyWrapper = new LevelDifficultyWrapper(item.getLevelDifficulty());
             trainingProgramName = item.getTrainingProgramName();
             photoName = item.getPhotoName();
             timeBetweenExecution = item.getTimeBetweenExecution();
@@ -56,9 +56,11 @@ public class TrainingProgramWrapper implements ObjectWrapper<TrainingProgram>, S
     public void fromWrapper(TrainingProgram item) {
         if (item != null){
             item.setId(id);
-            item.setUser(user);
-            item.setTrainingLocation(trainingLocation);
-            item.setLevelDifficulty(levelDifficulty);
+            item.setUserID(userID);
+            item.setTrainingLocationID(trainingLocationID);
+            LevelDifficulty levelDifficultyAttr = new LevelDifficulty();
+            levelDifficultyWrapper.fromWrapper(levelDifficultyAttr);
+            item.setLevelDifficulty(levelDifficultyAttr);
             item.setTrainingProgramName(trainingProgramName);
             item.setPhotoName(photoName);
             item.setTimeBetweenExecution(timeBetweenExecution);

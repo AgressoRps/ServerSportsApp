@@ -13,6 +13,8 @@ public class LevelDifficultyWrapper implements ObjectWrapper<LevelDifficulty>, S
     private Short time;
     private Float coefficient;
 
+    public LevelDifficultyWrapper(){}
+
     public LevelDifficultyWrapper(LevelDifficulty levelDifficulty){
         toWrapper(levelDifficulty);
     }

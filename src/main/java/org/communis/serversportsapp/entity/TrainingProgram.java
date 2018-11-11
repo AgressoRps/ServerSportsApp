@@ -14,13 +14,11 @@ public class TrainingProgram {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_user_app")
-    private UserApp user;
+    @Column(name = "id_user_app")
+    private Long userID;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_training_location")
-    private TrainingLocation trainingLocation;
+    @Column(name = "id_training_location")
+    private Short trainingLocationID;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_level_difficulty")
