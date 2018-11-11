@@ -1,6 +1,7 @@
 package org.communis.serversportsapp.service;
 
 import org.communis.serversportsapp.dto.TrainingLocationWrapper;
+import org.communis.serversportsapp.entity.TrainingLocation;
 import org.communis.serversportsapp.exception.ServerException;
 import org.communis.serversportsapp.exception.error.ErrorCodeConstants;
 import org.communis.serversportsapp.exception.error.ErrorInformationBuilder;
@@ -23,11 +24,27 @@ public class TrainingLocationService {
         this.trainingLocationRepository = trainingLocationRepository;
     }
 
+    /**
+     * Метод поиска и получения всех существующих тренировочных локаций
+     * @return список экземпляров класса TrainingLocationWrapper (список локаций)
+     * @throws ServerException генерирует исключение с кодом TRAINING_LOCATION_LIST_ERROR
+     */
     public List<TrainingLocationWrapper> getAllTrainingLocations() throws ServerException{
         try{
             return trainingLocationRepository.findAll().stream().map(TrainingLocationWrapper::new).collect(Collectors.toList());
         }catch (Exception ex){
             throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_LOCATION_LIST_ERROR), ex);
         }
+    }
+
+    /**
+     * Метод поиска и получения тренировочной локации по переданному идентификатору
+     * @param id идентификатор тренировочной локации
+     * @return экземпляр класса TrainingLocation (тренировочная локация)
+     * @throws ServerException генерирует исключение с кодом DATA_NOT_FOUND
+     */
+    private TrainingLocation getTrainingLocation(Short id) throws ServerException{
+        return trainingLocationRepository.findById(id)
+                .orElseThrow(() -> new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_NOT_FOUND)));
     }
 }
