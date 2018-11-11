@@ -38,6 +38,22 @@ public class TrainingLocationService {
     }
 
     /**
+     * Метод получения и поиска тренировочной локации по указанному идентификатору
+     * @param id идентификатор тренировочной локации
+     * @return экземпляр класса TrainingLocationWrapper (тренировочная локация)
+     * @throws ServerException генерирует исключение с кодом TRAINING_LOCATION_INFO_ERROR
+     */
+    public TrainingLocationWrapper getById(Short id) throws ServerException{
+        try{
+            return new TrainingLocationWrapper(getTrainingLocation(id));
+        }catch (ServerException ex){
+            throw ex;
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_LOCATION_INFO_ERROR), ex);
+        }
+    }
+
+    /**
      * Метод поиска и получения тренировочной локации по переданному идентификатору
      * @param id идентификатор тренировочной локации
      * @return экземпляр класса TrainingLocation (тренировочная локация)
