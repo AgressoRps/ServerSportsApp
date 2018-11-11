@@ -12,9 +12,24 @@ public interface TrainingProgramRepository extends JpaRepository<TrainingProgram
     /**
      * Метод поиска тренировочной программы по идентификатору
      * @param id идентификатор тренировочной программы, которую нужно найти
-     * @return экземпляр класса TrainingProgram
+     * @return экземпляр класса TrainingProgram (тренировочная программа)
      */
     Optional<TrainingProgram> findById(Long id);
+
+    /**
+     * Метод поиска всех тренировочных программ указанного пользователя
+     * @param id идентификатор пользователя
+     * @return список экземпляров класса TrainingProgram (список тренировочных программ пользователя)
+     */
+    List<TrainingProgram> findAllByUserID(Long id);
+
+    /**
+     * Метод поиска всех тренировочных программ указанного пользователя на указанных локациях
+     * @param userID идентификатор пользователя
+     * @param trainingLocationID идентификатор тренировочной локации
+     * @return список экземпляров класса TrainingProgram (тренировочные программы)
+     */
+    List<TrainingProgram> findAllByUserIDAndTrainingLocationID(Long userID, Short trainingLocationID);
 
     /**
      * Метод поиска тренировочных программ по состоянию
