@@ -17,7 +17,7 @@ import java.util.List;
 
 @Log4j2
 @RestController
-@RequestMapping("/trainingDayContent")
+@RequestMapping("/training-day-content")
 public class TrainingDayContentController {
 
     private final TrainingDayContentService trainingDayContentService;
@@ -27,10 +27,38 @@ public class TrainingDayContentController {
         this.trainingDayContentService = trainingDayContentService;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    /**
+     * Метод реагирует на запрос /training-day-content/training-day/{id}, выполняет запрос к бд
+     * для получения всех значений связанных с указанным тренировочным днем
+     * @param id идентификатор тренировочного дня
+     * @return список экземпляров класса TrainingDayContentWrapper (контент тренировки)
+     * @throws ServerException в случае ошибки генерирует исключение
+     */
+    @RequestMapping(value = "/training-day/{id}", method = RequestMethod.GET)
     public List<TrainingDayContentWrapper> getAllContentByTrainingDay(@PathVariable("id") Long id) throws ServerException{
-        TrainingDay trainingDay = new TrainingDay();
-        trainingDay.setId(id);
-        return trainingDayContentService.getAllContentByTrainingDay(trainingDay);
+        return trainingDayContentService.getAllContentByTrainingDay(id);
+    }
+
+    /**
+     * Метод реагирует на запрос /training-day-content/{id}, выполняет запрос к бд для получения
+     * всех данных связанных с переданным идентификатор контента тренировочного дня
+     * @param id идентификатор контента тренировочного дня
+     * @return экземпляр класса TrainingDayContentWrapper (контент тренировки)
+     * @throws ServerException в случае ошибки генерирует исключение
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public TrainingDayContentWrapper getById(@PathVariable("id") Long id) throws ServerException{
+        return trainingDayContentService.getById(id);
+    }
+
+    /**
+     * Метод реагирует на запрос /training-day-content/, выполняет запрос к бд для получения всех
+     * данных таблицы
+     * @return список экземпляров класса TrainingDayContentWrapper (весь тренировочный контент бд)
+     * @throws ServerException в случае ошибки генерирует исключение
+     */
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public List<TrainingDayContentWrapper> getAll() throws ServerException{
+        return trainingDayContentService.getAll();
     }
 }

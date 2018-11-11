@@ -40,6 +40,19 @@ public class TrainingDayContentService {
     }
 
     /**
+     * Метод поиска и получения всего контента тренировочных дней
+     * @return список экземпляров класса TrainingDayContent (содержимое тренировочных дней)
+     * @throws ServerException генерирует исключение с кодом TRAINING_DAY_CONTENT_LIST_ERROR
+     */
+    public List<TrainingDayContentWrapper> getAll() throws ServerException{
+        try{
+            return trainingDayContentRepository.findAll().stream().map(TrainingDayContentWrapper::new).collect(Collectors.toList());
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_DAY_CONTENT_LIST_ERROR), ex);
+        }
+    }
+
+    /**
      * Метод поиска и получения данных содержимого тренировочного дня по переданному идентификатору
      * @param id идентификатор содержимого тренировочного дня
      * @return экземпляр класса TrainingDayContentWrapper (контент тренировочного дня)
