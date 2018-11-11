@@ -11,6 +11,8 @@ public class DayWrapper implements ObjectWrapper<Day>, Serializable {
     private Short id;
     private String name;
 
+    public DayWrapper(){}
+
     public DayWrapper(Day day){
         toWrapper(day);
     }

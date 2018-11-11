@@ -15,7 +15,7 @@ public class TrainingDay {
     private Long id;
 
     @Column(name = "id_training_program")
-    private TrainingProgram trainingProgram;
+    private Long trainingProgramID;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_day")

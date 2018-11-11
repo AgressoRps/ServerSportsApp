@@ -12,8 +12,8 @@ import java.io.Serializable;
 public class TrainingDayWrapper implements ObjectWrapper<TrainingDay>, Serializable {
 
     private Long id;
-    private TrainingProgram trainingProgram;
-    private Day day;
+    private Long trainingProgramID;
+    private DayWrapper dayWrapper = new DayWrapper();
     private TrainingDayState trainingDayState;
 
     public TrainingDayWrapper(TrainingDay trainingDay){
@@ -28,8 +28,8 @@ public class TrainingDayWrapper implements ObjectWrapper<TrainingDay>, Serializa
     public void toWrapper(TrainingDay item) {
         if (item != null){
             id = item.getId();
-            trainingProgram = item.getTrainingProgram();
-            day = item.getDay();
+            trainingProgramID = item.getTrainingProgramID();
+            dayWrapper = new DayWrapper(item.getDay());
             trainingDayState = item.getTrainingDayState();
         }
     }
@@ -42,8 +42,10 @@ public class TrainingDayWrapper implements ObjectWrapper<TrainingDay>, Serializa
     public void fromWrapper(TrainingDay item) {
         if (item != null){
             item.setId(id);
-            item.setTrainingProgram(trainingProgram);
-            item.setDay(day);
+            item.setTrainingProgramID(trainingProgramID);
+            Day dayAttr = new Day();
+            dayWrapper.fromWrapper(dayAttr);
+            item.setDay(dayAttr);
             item.setTrainingDayState(trainingDayState);
         }
     }

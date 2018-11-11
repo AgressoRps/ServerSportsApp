@@ -11,7 +11,7 @@ public class FriendWrapper implements ObjectWrapper<Friend>, Serializable {
 
     private Long id;
     private Long userID;
-    private UserApp friend;
+    private UserAppWrapper friendWrapper = new UserAppWrapper();
 
     public FriendWrapper (Friend friend){
         toWrapper(friend);
@@ -26,7 +26,7 @@ public class FriendWrapper implements ObjectWrapper<Friend>, Serializable {
         if (item != null){
             id = item.getId();
             userID = item.getUserID();
-            friend = item.getFriend();
+            friendWrapper = new UserAppWrapper(item.getFriend());
         }
     }
 
@@ -39,7 +39,9 @@ public class FriendWrapper implements ObjectWrapper<Friend>, Serializable {
         if (item != null){
             //item.setId(id);
             item.setUserID(userID);
-            item.setFriend(friend);
+            UserApp friendAttr = new UserApp();
+            friendWrapper.fromWrapper(friendAttr);
+            item.setFriend(friendAttr);
         }
     }
 }
