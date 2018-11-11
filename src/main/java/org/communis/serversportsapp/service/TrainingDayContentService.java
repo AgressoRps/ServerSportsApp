@@ -2,6 +2,7 @@ package org.communis.serversportsapp.service;
 
 import org.communis.serversportsapp.dto.TrainingDayContentWrapper;
 import org.communis.serversportsapp.entity.TrainingDay;
+import org.communis.serversportsapp.entity.TrainingDayContent;
 import org.communis.serversportsapp.exception.ServerException;
 import org.communis.serversportsapp.exception.error.ErrorCodeConstants;
 import org.communis.serversportsapp.exception.error.ErrorInformationBuilder;
@@ -24,12 +25,45 @@ public class TrainingDayContentService {
         this.trainingDayContentRepository = trainingDayContentRepository;
     }
 
-    public List<TrainingDayContentWrapper> getAllContentByTrainingDay(TrainingDay trainingDay) throws ServerException{
+    /**
+     * Метод поиска и получения всего контента тренировочного дня по идентификатору
+     * @param id идентификатор тренировоного дня, содержимое которого необходимо получить
+     * @return список экземпляров класса TrainingDayContent (содержимое тренировочного дня)
+     * @throws ServerException генерирует исключение с кодом TRAINING_DAY_CONTENT_LIST_ERROR
+     */
+    public List<TrainingDayContentWrapper> getAllContentByTrainingDay(Long id) throws ServerException{
         try{
-            return trainingDayContentRepository.findAllByTrainingDay(trainingDay).stream().map(TrainingDayContentWrapper::new).collect(Collectors.toList());
+            return trainingDayContentRepository.findAllByTrainingDayID(id).stream().map(TrainingDayContentWrapper::new).collect(Collectors.toList());
         }catch (Exception ex){
             throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_DAY_CONTENT_LIST_ERROR), ex);
         }
+    }
+
+    /**
+     * Метод поиска и получения данных содержимого тренировочного дня по переданному идентификатору
+     * @param id идентификатор содержимого тренировочного дня
+     * @return экземпляр класса TrainingDayContentWrapper (контент тренировочного дня)
+     * @throws ServerException генерирует исключение с кодом TRAINING_DAY_CONTENT_INFO_ERROR
+     */
+    public TrainingDayContentWrapper getById(Long id) throws ServerException{
+        try{
+            return new TrainingDayContentWrapper(getTrainingDayContent(id));
+        }catch (ServerException ex){
+            throw ex;
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_DAY_CONTENT_INFO_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод поиска и получения данных содержимого тренировочного дня по идентификатору
+     * @param id идентификатор тренировочного дня
+     * @return экземпляр класса TrainingDayContent (контент тренировчного дня)
+     * @throws ServerException генерирует исключение с кодом DATA_NOT_FOUND
+     */
+    private TrainingDayContent getTrainingDayContent(Long id) throws ServerException{
+        return trainingDayContentRepository.findById(id)
+                .orElseThrow(() -> new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_NOT_FOUND)));
     }
 
 }
