@@ -14,8 +14,7 @@ public class TrainingDay {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_training_program")
+    @Column(name = "id_training_program")
     private TrainingProgram trainingProgram;
 
     @ManyToOne(fetch = FetchType.EAGER)
