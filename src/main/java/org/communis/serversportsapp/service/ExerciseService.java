@@ -84,15 +84,16 @@ public class ExerciseService {
     /**
      * Метод добавления нового упражнения в базу данных
      * @param exerciseWrapper полученные данные от пользователя (упражнение)
-     * @return идентификатор добавленного упражнения
-     * @throws ServerException генерирует исключения с кодом DATA_VALIDATE_ERROR и EXERCISE_ADD_ERROR
+     * @return при успешном выполнении - true
+     * @throws ServerException генерирует исключение с кодом DATA_VALIDATE_ERROR и EXERCISE_ADD_ERROR
      */
-    public Short addExercise(ExerciseWrapper exerciseWrapper) throws ServerException{
+    public String addExercise(ExerciseWrapper exerciseWrapper) throws ServerException{
         try {
             if (exerciseWrapper.getName() != null && !exerciseWrapper.getName().equals("")){
                 Exercise exercise = new Exercise();
                 exerciseWrapper.fromWrapper(exercise);
-                return exerciseRepository.save(exercise).getId();
+                exerciseRepository.save(exercise);
+                return "true";
             }else {
                 throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_VALIDATE_ERROR));
             }
@@ -100,4 +101,38 @@ public class ExerciseService {
             throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.EXERCISE_ADD_ERROR), ex);
         }
     }
+
+    /**
+     * Метод редактирования упражнения
+     * @param exerciseWrapper измененнное упражнение
+     * @return при успешном выполнении - true
+     * @throws ServerException в случае ошибки генерирует исключение с кодом EXERCISE_UPDATE_ERROR
+     */
+    public String editExercise(ExerciseWrapper exerciseWrapper) throws ServerException{
+        try {
+            Exercise exercise = getExercise(exerciseWrapper.getId());
+            exerciseWrapper.fromWrapper(exercise);
+            exerciseRepository.save(exercise);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.EXERCISE_UPDATE_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод удаления упражнения по переданному идентификатору
+     * @param id идентификатор упражнения, которое требуется удалить
+     * @return при успешном выполнении - true
+     * @throws ServerException в случае ошибки генерирует исключение с кодом EXERCISE_DELETE_ERROR
+     */
+    public String deleteExercise(Short id) throws ServerException{
+        try {
+            Exercise exercise = getExercise(id);
+            exerciseRepository.delete(exercise);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.EXERCISE_DELETE_ERROR), ex);
+        }
+    }
+
 }

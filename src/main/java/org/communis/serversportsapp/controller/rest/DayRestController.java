@@ -26,7 +26,7 @@ public class DayRestController {
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Short add(DayWrapper dayWrapper) throws ServerException{
+    public String add(DayWrapper dayWrapper) throws ServerException{
         return dayService.addDay(dayWrapper);
     }
 }

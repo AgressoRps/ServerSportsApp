@@ -70,15 +70,16 @@ public class DayService {
     /**
      * Метод добавления дня в базу данных
      * @param dayWrapper полученные данные (день)
-     * @return идентификатор добавленного дня
+     * @return при успешном выполнении - true
      * @throws ServerException генерирует исключение с кодом DAY_ADD_ERROR либо DATA_VALIDATE_ERROR
      */
-    public Short addDay(DayWrapper dayWrapper) throws ServerException{
+    public String addDay(DayWrapper dayWrapper) throws ServerException{
         try {
             if (dayWrapper.getName() != null && !dayWrapper.getName().equals("")) {
                 Day day = new Day();
                 dayWrapper.fromWrapper(day);
-                return dayRepository.save(day).getId();
+                dayRepository.save(day);
+                return "true";
             }
             else{
                 throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_VALIDATE_ERROR));
