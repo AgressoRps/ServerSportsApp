@@ -81,4 +81,23 @@ public class ExerciseService {
                 .orElseThrow(() -> new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_NOT_FOUND)));
     }
 
+    /**
+     * Метод добавления нового упражнения в базу данных
+     * @param exerciseWrapper полученные данные от пользователя (упражнение)
+     * @return идентификатор добавленного упражнения
+     * @throws ServerException генерирует исключения с кодом DATA_VALIDATE_ERROR и EXERCISE_ADD_ERROR
+     */
+    public Short addExercise(ExerciseWrapper exerciseWrapper) throws ServerException{
+        try {
+            if (exerciseWrapper.getName() != null && !exerciseWrapper.getName().equals("")){
+                Exercise exercise = new Exercise();
+                exerciseWrapper.fromWrapper(exercise);
+                return exerciseRepository.save(exercise).getId();
+            }else {
+                throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_VALIDATE_ERROR));
+            }
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.EXERCISE_ADD_ERROR), ex);
+        }
+    }
 }
