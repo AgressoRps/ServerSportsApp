@@ -24,6 +24,14 @@ public interface UserAppRepository extends JpaRepository<UserApp, Long> {
     Optional<UserApp> findByEmail(String email);
 
     /**
+     * Метод поиска совпадений по логину либо почте пользователя
+     * @param login логин пользователя
+     * @param email электронная почта пользователя
+     * @return экземпляр класса UserApp
+     */
+    Optional<UserApp> findByLoginOrEmail(String login, String email);
+
+    /**
      * Метод поиска пользователя по имени либо логину
      * @param name имя пользователя
      * @param login логин пользователя
@@ -36,7 +44,7 @@ public interface UserAppRepository extends JpaRepository<UserApp, Long> {
      * @param role роль пользователей, которых нужно найти
      * @return список пользователей, экземпляры класса UserApp
      */
-    List<UserApp> findByRole(UserAppRole role);
+    List<UserApp> findAllByRole(UserAppRole role);
 
     /**
      * Метод поиска пользователя по идентификатор
