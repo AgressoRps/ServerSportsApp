@@ -32,4 +32,17 @@ public class FriendRestController {
     public String addFriend(FriendWrapper friendWrapper) throws ServerException{
         return friendService.addFriend(friendWrapper);
     }
+
+    /**
+     * Метод реагирует на запрос /friends/delete, выполняет запрос к бд
+     * для удаления указанной записи о друге
+     * @param friendWrapper содержит идентификатор удаляемой записи
+     * @return true - при успешном удалении
+     * @throws ServerException в случае ошибки генерирует исключение
+     */
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @ResponseBody
+    public String deleteFriend(FriendWrapper friendWrapper) throws ServerException{
+        return friendService.deleteFriend(friendWrapper.getId());
+    }
 }
