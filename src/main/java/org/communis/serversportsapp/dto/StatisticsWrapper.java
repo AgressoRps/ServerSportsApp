@@ -30,6 +30,8 @@ public class StatisticsWrapper implements ObjectWrapper<Statistics>, Serializabl
     private DifficultyState difficultyState;
     private Date dateTime;
 
+    public StatisticsWrapper(){}
+
     public StatisticsWrapper(Statistics statistics){
         toWrapper(statistics);
     }

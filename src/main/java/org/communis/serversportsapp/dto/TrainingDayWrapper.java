@@ -16,6 +16,8 @@ public class TrainingDayWrapper implements ObjectWrapper<TrainingDay>, Serializa
     private DayWrapper dayWrapper = new DayWrapper();
     private TrainingDayState trainingDayState;
 
+    public TrainingDayWrapper(){}
+
     public TrainingDayWrapper(TrainingDay trainingDay){
         toWrapper(trainingDay);
     }

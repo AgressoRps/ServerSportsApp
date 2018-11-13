@@ -64,4 +64,59 @@ public class ProgressService {
                 .orElseThrow(() -> new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_NOT_FOUND)));
     }
 
+    /**
+     * Метод добавления нового достижения в базу данных
+     * @param progressWrapper данные, которые необходимо добавить
+     * @return true - в результате успешного добавления
+     * @throws ServerException генерирует исключение с кодом DATA_VALIDATE_ERROR либо PROGRESS_ADD_ERROR
+     */
+    public String addProgress(ProgressWrapper progressWrapper) throws ServerException{
+        try {
+            if (progressWrapper.getName() != null && !progressWrapper.getName().equals("")){
+                Progress progress = new Progress();
+                progressWrapper.fromWrapper(progress);
+                progressRepository.save(progress);
+                return "true";
+            }else {
+                throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_VALIDATE_ERROR));
+            }
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.PROGRESS_ADD_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод редактирования достижения
+     * @param progressWrapper данные, которые необходимо заменить
+     * @return true - в случае успешного выполнения
+     * @throws ServerException генерирует исключение с кодом PROGRESS_UPDATE_ERROR
+     */
+    public String editProgress(ProgressWrapper progressWrapper) throws ServerException{
+        try {
+            Progress progress = getProgress(progressWrapper.getId());
+            progressWrapper.fromWrapper(progress);
+            progressRepository.save(progress);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.PROGRESS_UPDATE_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод удаления достижения из базы данных
+     * @param progressWrapper содержит идентификатор достижения, которое необходимо удалить
+     * @return true - при успешном удалении из бд
+     * @throws ServerException генерирует исключение с кодом PROGRESS_DELETE_ERROR
+     */
+    public String deleteProgress(ProgressWrapper progressWrapper) throws ServerException{
+        try {
+            Progress progress = new Progress();
+            progressWrapper.fromWrapper(progress);
+            progressRepository.delete(progress);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.PROGRESS_DELETE_ERROR), ex);
+        }
+    }
+
 }

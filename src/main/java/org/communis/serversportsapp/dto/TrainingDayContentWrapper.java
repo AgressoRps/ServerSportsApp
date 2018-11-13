@@ -15,6 +15,8 @@ public class TrainingDayContentWrapper implements ObjectWrapper<TrainingDayConte
     private ExerciseWrapper exerciseWrapper = new ExerciseWrapper();
     private Short numberRepetitions;
 
+    public TrainingDayContentWrapper(){}
+
     public TrainingDayContentWrapper(TrainingDayContent trainingDayContent){
         toWrapper(trainingDayContent);
     }
