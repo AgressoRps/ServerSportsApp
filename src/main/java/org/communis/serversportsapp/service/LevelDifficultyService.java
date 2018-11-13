@@ -102,6 +102,12 @@ public class LevelDifficultyService {
         }
     }
 
+    /**
+     * Метод удаления уровня сложности из базы данных
+     * @param levelDifficultyWrapper содержит идентификатор уровня сложности, по которому выполняется удаление
+     * @return true - при успешном удалении из бд
+     * @throws ServerException генерирует исключение с кодом LEVEL_DIFFICULTY_DELETE_ERROR
+     */
     public String deleteLevel(LevelDifficultyWrapper levelDifficultyWrapper) throws ServerException{
         try {
             LevelDifficulty levelDifficulty = new LevelDifficulty();
