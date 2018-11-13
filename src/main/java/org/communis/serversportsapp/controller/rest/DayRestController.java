@@ -26,7 +26,33 @@ public class DayRestController {
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public String add(DayWrapper dayWrapper) throws ServerException{
+    public String addDay(DayWrapper dayWrapper) throws ServerException{
         return dayService.addDay(dayWrapper);
+    }
+
+    /**
+     * Метод реагирует на patch запрос /day/edit, выполняет запрос к бд
+     * для редактирования указанного дня
+     * @param dayWrapper содержит данные, которые необходимо изменить
+     * @return true - в случае успешного изменения
+     * @throws ServerException в случае ошибки генерирует исключение
+     */
+    @RequestMapping(value = "/edit", method = RequestMethod.PATCH)
+    @ResponseBody
+    public String editDay(DayWrapper dayWrapper) throws ServerException{
+        return dayService.editDay(dayWrapper);
+    }
+
+    /**
+     * Метод реагирует на запрос /day/delete, выполняет запрос к бд
+     * для удаления дня по переданному идентификатору
+     * @param dayWrapper содержит идентификатор, по которому выполняется удаление
+     * @return true - в случае успешного удаления
+     * @throws ServerException в случае ошибки генерирует исключение
+     */
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @ResponseBody
+    public String deleteDay(DayWrapper dayWrapper) throws ServerException{
+        return dayService.deleteDay(dayWrapper.getId());
     }
 }
