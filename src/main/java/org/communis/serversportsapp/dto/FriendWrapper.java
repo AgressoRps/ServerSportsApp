@@ -13,6 +13,8 @@ public class FriendWrapper implements ObjectWrapper<Friend>, Serializable {
     private Long userID;
     private UserAppWrapper friendWrapper = new UserAppWrapper();
 
+    public FriendWrapper(){}
+
     public FriendWrapper (Friend friend){
         toWrapper(friend);
     }
@@ -37,7 +39,7 @@ public class FriendWrapper implements ObjectWrapper<Friend>, Serializable {
     @Override
     public void fromWrapper(Friend item) {
         if (item != null){
-            //item.setId(id);
+            item.setId(id);
             item.setUserID(userID);
             UserApp friendAttr = new UserApp();
             friendWrapper.fromWrapper(friendAttr);

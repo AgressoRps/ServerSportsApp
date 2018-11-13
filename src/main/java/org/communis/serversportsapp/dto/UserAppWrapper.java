@@ -79,10 +79,12 @@ public class UserAppWrapper implements ObjectWrapper<UserApp>, Serializable {
     @Override
     public void fromWrapper(UserApp item) {
         if (item != null){
+            item.setId(id);
             item.setName(name);
             item.setSurname(surname);
             item.setLogin(login);
             item.setEmail(email);
+            item.setPassword(password);
             item.setRole(role);
             item.setUserState(state);
         }

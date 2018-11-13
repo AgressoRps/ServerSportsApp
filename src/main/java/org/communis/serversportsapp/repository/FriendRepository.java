@@ -25,4 +25,12 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
      */
     Optional<Friend> findById(Long id);
 
+    /**
+     * Метод поиска совпадений, проверяет, существует ли друг
+     * @param userApp друг, которого нужно найти
+     * @param userID пользователь, друга которого ищем
+     * @return экземпляр класса Friend
+     */
+    Optional<Friend> findFriendByUserIDAndFriend(Long userID, UserApp userApp);
+
 }

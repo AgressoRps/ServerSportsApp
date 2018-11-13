@@ -85,6 +85,7 @@ public class ErrorCodeConstants {
     public static final ErrorCodeIdentifier FRIEND_ADD_ERROR = FRIEND.branch("3");
     public static final ErrorCodeIdentifier FRIEND_UPDATE_ERROR = FRIEND.branch("4");
     public static final ErrorCodeIdentifier FRIEND_DELETE_ERROR = FRIEND.branch("5");
+    public static final ErrorCodeIdentifier FRIEND_EXIST_ERROR = FRIEND.branch("6");
 
     public static final ErrorCodeIdentifier RANK_USER = new ErrorCodeIdentifier("10");
     public static final ErrorCodeIdentifier RANK_USER_LIST_ERROR = RANK_USER.branch("1");
@@ -193,6 +194,8 @@ public class ErrorCodeConstants {
         messages.put(FRIEND_ADD_ERROR, "Ошибка при добавлении нового друга");
         messages.put(FRIEND_UPDATE_ERROR, "Ошибка при изменении друга");
         messages.put(FRIEND_DELETE_ERROR, "Ошибка при удалении друга");
+        messages.put(FRIEND_EXIST_ERROR, "Этот человек уже и так у вас в друзьях");
+
 
         messages.put(RANK_USER_LIST_ERROR, "Ошибка при получении списка всех рангов пользователя");
         messages.put(RANK_USER_INFO_ERROR, "Ошибка при получении информации о ранге пользователя");
