@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface FriendRepository extends JpaRepository<Friend, Long> {
 
@@ -16,5 +17,12 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
      * @return список экземпляров класса Friend (список друзей)
      */
     List<Friend> findAllByUserID(Long userID);
+
+    /**
+     * Метод поиска и получения данных по переданному идентификатору
+     * @param id идентификатор запрашиваемой записи
+     * @return экземпляр класса Friend (данные о друге)
+     */
+    Optional<Friend> findById(Long id);
 
 }

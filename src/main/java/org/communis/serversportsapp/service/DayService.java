@@ -91,7 +91,7 @@ public class DayService {
 
     /**
      * Метод редактирования дня
-     * @param dayWrapper данные, которые нужно отредактировать (день)
+     * @param dayWrapper данные, которые нужно редактировать (день)
      * @return в случае успешного выполнения - true
      * @throws ServerException метод генерирует исключение с кодом DAY_UPDATE_ERROR
      */
