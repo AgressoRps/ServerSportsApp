@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/day")
 public class DayRestController {
 
-    private DayService dayService;
+    private final DayService dayService;
 
     @Autowired
     public DayRestController(DayService dayService){
@@ -21,7 +21,7 @@ public class DayRestController {
      * Метод реагирует на post запрос /day/add, выполняет запрос к бд
      * для добавления нового дня
      * @param dayWrapper содержит данные, которые необходимо добавить
-     * @return идентификатор добавленного дня
+     * @return true - в случае успешного добавления
      * @throws ServerException в случае ошибки генерирует исключение
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
