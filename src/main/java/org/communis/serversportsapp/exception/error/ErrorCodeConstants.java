@@ -78,6 +78,8 @@ public class ErrorCodeConstants {
     public static final ErrorCodeIdentifier PROGRESS_USER_ADD_ERROR = PROGRESS_USER.branch("3");
     public static final ErrorCodeIdentifier PROGRESS_USER_UPDATE_ERROR = PROGRESS_USER.branch("4");
     public static final ErrorCodeIdentifier PROGRESS_USER_DELETE_ERROR = PROGRESS_USER.branch("5");
+    public static final ErrorCodeIdentifier PROGRESS_USER_EXIST_ERROR = PROGRESS_USER.branch("6");
+
 
     public static final ErrorCodeIdentifier FRIEND = new ErrorCodeIdentifier("9");
     public static final ErrorCodeIdentifier FRIEND_LIST_ERROR = FRIEND.branch("1");
@@ -188,13 +190,15 @@ public class ErrorCodeConstants {
         messages.put(PROGRESS_USER_ADD_ERROR, "Ошибка при добавлении достижения пользователя");
         messages.put(PROGRESS_USER_UPDATE_ERROR, "Ошибка при изменении достижения пользователя");
         messages.put(PROGRESS_USER_DELETE_ERROR, "Ошибка при удалении достижения пользователя");
+        messages.put(PROGRESS_USER_EXIST_ERROR, "Пользователь уже имеет это достижение!");
+
 
         messages.put(FRIEND_LIST_ERROR, "Ошибка при получении списка всех друзей");
         messages.put(FRIEND_INFO_ERROR, "Ошибка при получении информации о друге");
         messages.put(FRIEND_ADD_ERROR, "Ошибка при добавлении нового друга");
         messages.put(FRIEND_UPDATE_ERROR, "Ошибка при изменении друга");
         messages.put(FRIEND_DELETE_ERROR, "Ошибка при удалении друга");
-        messages.put(FRIEND_EXIST_ERROR, "Этот человек уже и так у вас в друзьях");
+        messages.put(FRIEND_EXIST_ERROR, "Этот человек уже и так у вас в друзьях!");
 
 
         messages.put(RANK_USER_LIST_ERROR, "Ошибка при получении списка всех рангов пользователя");

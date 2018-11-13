@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProgressUserRepository extends JpaRepository<ProgressUser, Long> {
 
@@ -16,4 +17,11 @@ public interface ProgressUserRepository extends JpaRepository<ProgressUser, Long
      * @return список экземпляров класса ProgressUser (список достижений пользователя)
      */
     List<ProgressUser> findAllByUserID(Long userID);
+
+    /**
+     * Метод поиска и получения достижения пользователя по указанному идентификатору
+     * @param progressUserId идентификатор записи, которую необходимо получить
+     * @return экземпляр класса ProgressUser (содержит достижение)
+     */
+    Optional<ProgressUser> findById(Long progressUserId);
 }

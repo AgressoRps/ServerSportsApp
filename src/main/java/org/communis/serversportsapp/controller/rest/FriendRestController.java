@@ -43,6 +43,6 @@ public class FriendRestController {
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     @ResponseBody
     public String deleteFriend(FriendWrapper friendWrapper) throws ServerException{
-        return friendService.deleteFriend(friendWrapper.getId());
+        return friendService.deleteFriend(friendWrapper);
     }
 }

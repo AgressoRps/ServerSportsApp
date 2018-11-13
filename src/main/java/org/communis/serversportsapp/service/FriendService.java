@@ -87,7 +87,7 @@ public class FriendService {
      */
     private boolean checkFriends(List<FriendWrapper> friends, Long id){
         for (FriendWrapper friend : friends){
-            if (friend.getFriendWrapper().getId() == id){
+            if (friend.getFriendWrapper().getId().equals(id)){
                 return false;
             }
         }
@@ -96,14 +96,14 @@ public class FriendService {
 
     /**
      * Метод удаления из друзей
-     * @param friendID идентификатор записи о друге
+     * @param friendWrapper - содержит идентификатор связывающей записи, которую необходимо удалить
      * @return true - в случае успешного удаления
      * @throws ServerException генерирует исключение с кодом FRIEND_DELETE_ERROR
      */
-    public String deleteFriend(Long friendID) throws ServerException{
+    public String deleteFriend(FriendWrapper friendWrapper) throws ServerException{
         try{
             //Friend friend = getFriend(friendID);
-            friendRepository.delete(friendID);
+            friendRepository.delete(friendWrapper.getId());
             return "true";
         }catch (Exception ex){
             throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.FRIEND_DELETE_ERROR));
