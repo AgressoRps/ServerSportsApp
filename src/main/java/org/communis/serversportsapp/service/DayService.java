@@ -88,4 +88,37 @@ public class DayService {
             throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DAY_ADD_ERROR), ex);
         }
     }
+
+    /**
+     * Метод редактирования дня
+     * @param dayWrapper данные, которые нужно отредактировать (день)
+     * @return в случае успешного выполнения - true
+     * @throws ServerException метод генерирует исключение с кодом DAY_UPDATE_ERROR
+     */
+    public String editDay(DayWrapper dayWrapper) throws ServerException{
+        try{
+            Day day = getDay(dayWrapper.getId());
+            dayWrapper.fromWrapper(day);
+            dayRepository.save(day);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DAY_UPDATE_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод удаления дня
+     * @param id идентификатор, по которому производится удаление
+     * @return в случае успешного выполнения - true
+     * @throws ServerException метод генерирует исключение с кодом DAY_DELETE_ERROR
+     */
+    public String deleteDay(Short id) throws ServerException{
+        try {
+            Day day = getDay(id);
+            dayRepository.delete(day);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DAY_DELETE_ERROR), ex);
+        }
+    }
 }
