@@ -7,7 +7,6 @@ import org.communis.serversportsapp.exception.ServerException;
 import org.communis.serversportsapp.exception.error.ErrorCodeConstants;
 import org.communis.serversportsapp.exception.error.ErrorInformationBuilder;
 import org.communis.serversportsapp.repository.FriendRepository;
-import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,7 +65,6 @@ public class FriendService {
                 Friend friend = new Friend();
                 friendWrapper.fromWrapper(friend);
                 if (checkFriends(getAllFriendsUser(friendWrapper.getUserID()), friendWrapper.getFriendWrapper().getId())){
-                    System.out.println(friend.getFriend());
                     friendRepository.save(friend);
                     return "true";
                 }else {
@@ -95,13 +93,20 @@ public class FriendService {
         }
         return true;
     }
-    /*private Boolean findFriend(Long userID, UserApp searchFriend) throws ServerException{
-        try {
-            Optional<Friend> friend = friendRepository.findFriendByUserIDAndFriend(userID, searchFriend);
-            return true;
-        }catch (Exception ex){
-            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.FRIEND_INFO_ERROR));
-        }
-    }*/
 
+    /**
+     * Метод удаления из друзей
+     * @param friendID идентификатор записи о друге
+     * @return true - в случае успешного удаления
+     * @throws ServerException генерирует исключение с кодом FRIEND_DELETE_ERROR
+     */
+    public String deleteFriend(Long friendID) throws ServerException{
+        try{
+            Friend friend = getFriend(friendID);
+            friendRepository.delete(friendID);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.FRIEND_DELETE_ERROR));
+        }
+    }
 }
