@@ -53,6 +53,6 @@ public class ExerciseRestController {
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     @ResponseBody
     public String deleteExercise(ExerciseWrapper exerciseWrapper) throws ServerException{
-        return exerciseService.deleteExercise(exerciseWrapper.getId());
+        return exerciseService.deleteExercise(exerciseWrapper);
     }
 }

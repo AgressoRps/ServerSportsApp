@@ -102,7 +102,7 @@ public class FriendService {
      */
     public String deleteFriend(Long friendID) throws ServerException{
         try{
-            Friend friend = getFriend(friendID);
+            //Friend friend = getFriend(friendID);
             friendRepository.delete(friendID);
             return "true";
         }catch (Exception ex){

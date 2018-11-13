@@ -108,13 +108,14 @@ public class DayService {
 
     /**
      * Метод удаления дня
-     * @param id идентификатор, по которому производится удаление
+     * @param dayWrapper содержит идентификатор, по которому будет производится удаление
      * @return в случае успешного выполнения - true
      * @throws ServerException метод генерирует исключение с кодом DAY_DELETE_ERROR
      */
-    public String deleteDay(Short id) throws ServerException{
+    public String deleteDay(DayWrapper dayWrapper) throws ServerException{
         try {
-            Day day = getDay(id);
+            Day day = new Day();
+            dayWrapper.fromWrapper(day);
             dayRepository.delete(day);
             return "true";
         }catch (Exception ex){

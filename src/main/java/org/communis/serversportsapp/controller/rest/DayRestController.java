@@ -53,6 +53,6 @@ public class DayRestController {
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     @ResponseBody
     public String deleteDay(DayWrapper dayWrapper) throws ServerException{
-        return dayService.deleteDay(dayWrapper.getId());
+        return dayService.deleteDay(dayWrapper);
     }
 }

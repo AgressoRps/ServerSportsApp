@@ -121,13 +121,14 @@ public class ExerciseService {
 
     /**
      * Метод удаления упражнения по переданному идентификатору
-     * @param id идентификатор упражнения, которое требуется удалить
+     * @param exerciseWrapper содержит идентификатор, по которому будет производится удаление
      * @return при успешном выполнении - true
      * @throws ServerException в случае ошибки генерирует исключение с кодом EXERCISE_DELETE_ERROR
      */
-    public String deleteExercise(Short id) throws ServerException{
+    public String deleteExercise(ExerciseWrapper exerciseWrapper) throws ServerException{
         try {
-            Exercise exercise = getExercise(id);
+            Exercise exercise = new Exercise();
+            exerciseWrapper.fromWrapper(exercise);
             exerciseRepository.delete(exercise);
             return "true";
         }catch (Exception ex){

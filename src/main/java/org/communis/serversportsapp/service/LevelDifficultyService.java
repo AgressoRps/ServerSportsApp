@@ -63,4 +63,53 @@ public class LevelDifficultyService {
         return levelDifficultyRepository.findById(id)
                 .orElseThrow(() -> new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_NOT_FOUND)));
     }
+
+    /**
+     * Метод добавления нового уровня сложности в базу данных
+     * @param levelDifficultyWrapper данные уровня сложности, которые необходимо добавить
+     * @return true - при успешном добавлении в бд
+     * @throws ServerException генерирует исключение с кодом DATA_VALIDATE_ERROR либо LEVEL_DIFFICULTY_ADD_ERROR
+     */
+    public String addLevel(LevelDifficultyWrapper levelDifficultyWrapper) throws ServerException{
+        try {
+            if (levelDifficultyWrapper.getName() != null && levelDifficultyWrapper.getCoefficient() != null){
+                LevelDifficulty levelDifficulty = new LevelDifficulty();
+                levelDifficultyWrapper.fromWrapper(levelDifficulty);
+                levelDifficultyRepository.save(levelDifficulty);
+                return "true";
+            }else {
+                throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_VALIDATE_ERROR));
+            }
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.LEVEL_DIFFICULTY_ADD_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод редактирования уровня сложности
+     * @param levelDifficultyWrapper уровень сложности с измененными данными
+     * @return true - при успешном выполнении
+     * @throws ServerException генерирует исключение с кодом LEVEL_DIFFICULTY_UPDATE_ERROR
+     */
+    public String editLevel(LevelDifficultyWrapper levelDifficultyWrapper) throws ServerException{
+        try {
+            LevelDifficulty levelDifficulty = getLevelDifficulty(levelDifficultyWrapper.getId());
+            levelDifficultyWrapper.fromWrapper(levelDifficulty);
+            levelDifficultyRepository.save(levelDifficulty);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.LEVEL_DIFFICULTY_UPDATE_ERROR), ex);
+        }
+    }
+
+    public String deleteLevel(LevelDifficultyWrapper levelDifficultyWrapper) throws ServerException{
+        try {
+            LevelDifficulty levelDifficulty = new LevelDifficulty();
+            levelDifficultyWrapper.fromWrapper(levelDifficulty);
+            levelDifficultyRepository.delete(levelDifficulty);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.LEVEL_DIFFICULTY_DELETE_ERROR), ex);
+        }
+    }
 }
