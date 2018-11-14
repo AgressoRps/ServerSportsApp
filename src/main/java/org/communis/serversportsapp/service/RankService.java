@@ -64,4 +64,58 @@ public class RankService {
                 .orElseThrow(() -> new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_NOT_FOUND)));
     }
 
+    /**
+     * Метод добавления нового звания
+     * @param rankWrapper содержит данные, которые необходимо добавить
+     * @return true - при успешном добавлении
+     * @throws ServerException генерирует исключение с кодом DATA_VALIDATE_ERROR либо RANK_ADD_ERROR
+     */
+    public String addRank(RankWrapper rankWrapper) throws ServerException{
+        try {
+            if (rankWrapper.getName() != null && !rankWrapper.getName().equals("")){
+                Rank rank = new Rank();
+                rankWrapper.fromWrapper(rank);
+                rankRepository.save(rank);
+                return "true";
+            }else {
+                throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_VALIDATE_ERROR));
+            }
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.RANK_ADD_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод обновления данных звания (редактирования)
+     * @param rankWrapper содержит измененные данные
+     * @return true - при успешном обновлении данных
+     * @throws ServerException генерирует исключение с кодом RANK_UPDATE_ERROR
+     */
+    public String editRank(RankWrapper rankWrapper) throws ServerException{
+        try {
+            Rank rank = getRank(rankWrapper.getId());
+            rankWrapper.fromWrapper(rank);
+            rankRepository.save(rank);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.RANK_UPDATE_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод удаления звания из базы данных
+     * @param rankWrapper содержит идентификатор удаляемого звания
+     * @return true - при успешном удалении
+     * @throws ServerException генерирует исключение с кодом RANK_DELETE_ERROR
+     */
+    public String deleteRank(RankWrapper rankWrapper) throws ServerException{
+        try {
+            Rank rank = new Rank();
+            rankWrapper.fromWrapper(rank);
+            rankRepository.save(rank);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.RANK_DELETE_ERROR), ex);
+        }
+    }
 }
