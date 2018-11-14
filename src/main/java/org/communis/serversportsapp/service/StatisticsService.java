@@ -125,4 +125,41 @@ public class StatisticsService {
         return statisticsRepository.findById(id)
                 .orElseThrow(() -> new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_NOT_FOUND)));
     }
+
+    /**
+     * Метод добавления статистики пользователя за тренировку
+     * @param statisticsWrapper данные, статистика, которую необходимо добавить
+     * @return true - при успешном добавлении статистики
+     * @throws ServerException генерирует исключение с кодом DATA_VALIDATE_ERROR либо STATISTICS_ADD_ERROR
+     */
+    public String addStatistics(StatisticsWrapper statisticsWrapper) throws ServerException{
+        try {
+            if (statisticsWrapper.getUserID() != null && statisticsWrapper.getTrainingLocationID() != null &&
+            statisticsWrapper.getTrainingProgramID() != null && statisticsWrapper.getTrainingDayID() != null){
+                Statistics statistics = new Statistics();
+                statisticsWrapper.fromWrapper(statistics);
+                statisticsRepository.save(statistics);
+                return "true";
+            }else {
+                throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_VALIDATE_ERROR));
+            }
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.STATISTICS_ADD_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод удаления статистики пользователя за определенную тренировку
+     * @param statisticsWrapper содержит идентификатор записи, статистики, которую необходимо удалить
+     * @return true - при успешном удалении записи
+     * @throws ServerException генерирует исключение с кодом STATISTICS_DELETE_ERROR
+     */
+    public String deleteStatistics(StatisticsWrapper statisticsWrapper) throws ServerException{
+        try {
+            statisticsRepository.delete(statisticsWrapper.getId());
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.STATISTICS_DELETE_ERROR), ex);
+        }
+    }
 }
