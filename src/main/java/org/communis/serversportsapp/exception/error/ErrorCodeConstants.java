@@ -95,6 +95,8 @@ public class ErrorCodeConstants {
     public static final ErrorCodeIdentifier RANK_USER_ADD_ERROR = RANK_USER.branch("3");
     public static final ErrorCodeIdentifier RANK_USER_UPDATE_ERROR = RANK_USER.branch("4");
     public static final ErrorCodeIdentifier RANK_USER_DELETE_ERROR = RANK_USER.branch("5");
+    public static final ErrorCodeIdentifier RANK_USER_EXIST_ERROR = RANK_USER.branch("6");
+
 
     public static final ErrorCodeIdentifier DAY = new ErrorCodeIdentifier("11");
     public static final ErrorCodeIdentifier DAY_LIST_ERROR = DAY.branch("1");
@@ -206,6 +208,7 @@ public class ErrorCodeConstants {
         messages.put(RANK_USER_ADD_ERROR, "Ошибка при добавлении нового ранга пользователю");
         messages.put(RANK_USER_UPDATE_ERROR, "Ошибка при изменении ранга пользователя");
         messages.put(RANK_USER_DELETE_ERROR, "Ошибка при удалении ранга пользователя");
+        messages.put(RANK_USER_EXIST_ERROR, "Это звание уже есть у пользователя!");
 
         messages.put(DAY_LIST_ERROR, "Ошибка при получении списка всех дней");
         messages.put(DAY_INFO_ERROR, "Ошибка при получении информации о дне");

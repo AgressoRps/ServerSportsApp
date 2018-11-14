@@ -84,7 +84,7 @@ public class ProgressUserService {
      */
     public String deleteProgressUser(ProgressUserWrapper progressUserWrapper) throws ServerException{
         try {
-            progressUserRepository.delete(progressUserWrapper.getUserID());
+            progressUserRepository.delete(progressUserWrapper.getId());
             return "true";
         }catch (Exception ex){
             throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.PROGRESS_USER_DELETE_ERROR), ex);
