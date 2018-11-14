@@ -15,7 +15,7 @@ import java.util.List;
 
 @Log4j2
 @RestController
-@RequestMapping(value = "/ranks/user")
+@RequestMapping(value = "/rank-user")
 public class RankUserController {
 
     private final RankUserService rankUserService;
@@ -26,7 +26,7 @@ public class RankUserController {
     }
 
     /**
-     * Метод реагирует на запрос /ranks/user/{id}, выполняет запрос к бд для получения
+     * Метод реагирует на запрос /rank-user/{id}, выполняет запрос к бд для получения
      * всех званий пользователя
      * @param id идентификатор пользователя
      * @return список экземпляров класса RankUserWrapper (список всех званий указанного пользователя)
