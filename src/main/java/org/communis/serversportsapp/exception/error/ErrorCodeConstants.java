@@ -43,6 +43,8 @@ public class ErrorCodeConstants {
     public static final ErrorCodeIdentifier TRAINING_DAY_ADD_ERROR = TRAINING_DAY.branch("3");
     public static final ErrorCodeIdentifier TRAINING_DAY_UPDATE_ERROR = TRAINING_DAY.branch("4");
     public static final ErrorCodeIdentifier TRAINING_DAY_DELETE_ERROR = TRAINING_DAY.branch("5");
+    public static final ErrorCodeIdentifier TRAINING_DAY_EXIST_ERROR = TRAINING_DAY.branch("6");
+
 
     public static final ErrorCodeIdentifier PROGRESS = new ErrorCodeIdentifier("4");
     public static final ErrorCodeIdentifier PROGRESS_LIST_ERROR = PROGRESS.branch("1");
@@ -162,6 +164,8 @@ public class ErrorCodeConstants {
         messages.put(TRAINING_DAY_ADD_ERROR, "Ошибка при добавлении тренировочного дня");
         messages.put(TRAINING_DAY_UPDATE_ERROR, "Ошибка при изменении тренировочного дня");
         messages.put(TRAINING_DAY_DELETE_ERROR, "Ошибка при удалении тренировочного дня");
+        messages.put(TRAINING_DAY_EXIST_ERROR, "Такой день уже существует в этой программе");
+
 
         messages.put(PROGRESS_LIST_ERROR, "Ошибка при получении списка всех достижений");
         messages.put(PROGRESS_INFO_ERROR, "Ошибка при получении достижения");

@@ -80,4 +80,76 @@ public class TrainingDayService {
                 .orElseThrow(() -> new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_NOT_FOUND)));
     }
 
+    /**
+     * Метод добавления нового тренировочного дня в указанную тренировочную программу
+     * @param trainingDayWrapper содержит всю добавляемую информацию
+     * @return true - при успешном добавлении в бд
+     * @throws ServerException генерирует исключение с кодом TRAINING_DAY_EXIST_ERROR либо DATA_VALIDATE_ERROR либо TRAINING_DAY_ADD_ERROR
+     */
+    public String addTrainingDay(TrainingDayWrapper trainingDayWrapper) throws ServerException{
+        try{
+            if (trainingDayWrapper.getTrainingProgramID() != null && trainingDayWrapper.getDayWrapper().getId() != null){
+                TrainingDay trainingDay = new TrainingDay();
+                trainingDayWrapper.fromWrapper(trainingDay);
+                if (checkTrainingDay(getAllByTrainingProgramId(trainingDayWrapper.getTrainingProgramID()), trainingDayWrapper.getDayWrapper().getId())){
+                    trainingDayRepository.save(trainingDay);
+                    return "true";
+                }else {
+                    throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_DAY_EXIST_ERROR));
+                }
+            }else {
+                throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_VALIDATE_ERROR));
+            }
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_DAY_ADD_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод редактирования тренировочного дня
+     * @param trainingDayWrapper содержит обновленную информацию тренировочного дня
+     * @return true - при успешном обновлении данных
+     * @throws ServerException генерирует исключение с кодом TRAINING_DAY_UPDATE_ERROR
+     */
+    public String editTrainingDay(TrainingDayWrapper trainingDayWrapper) throws ServerException{
+        try {
+            TrainingDay trainingDay = getTrainingDay(trainingDayWrapper.getId());
+            trainingDayWrapper.fromWrapper(trainingDay);
+            trainingDayRepository.save(trainingDay);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_DAY_UPDATE_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод удаления тренировочного дня из бд
+     * @param trainingDayWrapper содержит идентификатор тренировочного дня, который необходимо удалить
+     * @return true - при успешном удалении
+     * @throws ServerException генерирует исключение с кодом TRAINING_DAY_DELETE_ERROR
+     */
+    public String deleteTrainingDay(TrainingDayWrapper trainingDayWrapper) throws ServerException{
+        try {
+            trainingDayRepository.delete(trainingDayWrapper.getId());
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_DAY_DELETE_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод поиска для проверки, существует ли в указанной тренировочной программы такой тренировочный день
+     * @param trainingDayWrappers содержит список тренировочных дней указанной программы
+     * @param dayID идентификатор дня, на который происходит проверка
+     * @return true - в случае отсутствия указанного дня в списке тренировочных
+     * false - если такой день уже существует 
+     */
+    private Boolean checkTrainingDay(List<TrainingDayWrapper> trainingDayWrappers, Short dayID){
+        for(TrainingDayWrapper trainingDayWrapper : trainingDayWrappers){
+            if (trainingDayWrapper.getDayWrapper().getId().equals(dayID)){
+                return false;
+            }
+        }
+        return true;
+    }
 }
