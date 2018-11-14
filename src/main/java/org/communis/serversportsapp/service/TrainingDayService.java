@@ -142,7 +142,7 @@ public class TrainingDayService {
      * @param trainingDayWrappers содержит список тренировочных дней указанной программы
      * @param dayID идентификатор дня, на который происходит проверка
      * @return true - в случае отсутствия указанного дня в списке тренировочных
-     * false - если такой день уже существует 
+     * false - если такой день уже существует
      */
     private Boolean checkTrainingDay(List<TrainingDayWrapper> trainingDayWrappers, Short dayID){
         for(TrainingDayWrapper trainingDayWrapper : trainingDayWrappers){

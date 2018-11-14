@@ -1,5 +1,6 @@
 package org.communis.serversportsapp.service;
 
+import org.apache.tomcat.jni.Error;
 import org.communis.serversportsapp.dto.TrainingLocationWrapper;
 import org.communis.serversportsapp.entity.TrainingLocation;
 import org.communis.serversportsapp.exception.ServerException;
@@ -62,5 +63,58 @@ public class TrainingLocationService {
     private TrainingLocation getTrainingLocation(Short id) throws ServerException{
         return trainingLocationRepository.findById(id)
                 .orElseThrow(() -> new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_NOT_FOUND)));
+    }
+
+    /**
+     * Метод добавления новой тренировочной локации
+     * @param trainingLocationWrapper содержит данные о тренировочной локации
+     * @return true - при успешном добавлении
+     * @throws ServerException генерирует исключение с кодом DATA_VALIDATE_ERROR либо TRAINING_LOCATION_ADD_ERROR
+     */
+    public String addTrainingLocation(TrainingLocationWrapper trainingLocationWrapper) throws ServerException{
+        try {
+            if (trainingLocationWrapper.getName() != null && !trainingLocationWrapper.getName().equals("")){
+                TrainingLocation trainingLocation = new TrainingLocation();
+                trainingLocationWrapper.fromWrapper(trainingLocation);
+                trainingLocationRepository.save(trainingLocation);
+                return "true";
+            }else {
+                throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_VALIDATE_ERROR));
+            }
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_LOCATION_ADD_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод редактирования тренировочной локации
+     * @param trainingLocationWrapper новые данные, которыми заменяться старые
+     * @return true - при успешном обновлении данных
+     * @throws ServerException генерирует исключение с кодом TRAINING_LOCATION_UPDATE_ERROR
+     */
+    public String editTrainingLocation(TrainingLocationWrapper trainingLocationWrapper) throws ServerException{
+        try{
+            TrainingLocation trainingLocation = getTrainingLocation(trainingLocationWrapper.getId());
+            trainingLocationWrapper.fromWrapper(trainingLocation);
+            trainingLocationRepository.save(trainingLocation);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_LOCATION_UPDATE_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод удаления тренировочной локации
+     * @param trainingLocationWrapper содержит идентификатор, по которому удаляется соответствуящая запись из бд
+     * @return true - при успешном удалении
+     * @throws ServerException генерирует исключение с кодом TRAINING_LOCATION_DELETE_ERROR
+     */
+    public String deleteTrainingLocation(TrainingLocationWrapper trainingLocationWrapper) throws ServerException{
+        try {
+            trainingLocationRepository.delete(trainingLocationWrapper.getId());
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_LOCATION_DELETE_ERROR), ex);
+        }
     }
 }
