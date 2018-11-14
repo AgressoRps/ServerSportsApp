@@ -93,4 +93,58 @@ public class TrainingProgramService {
         return trainingProgramRepository.findById(id)
                 .orElseThrow(() -> new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_NOT_FOUND)));
     }
+
+    /**
+     * Метод добавления новой тренировочной программы в базу данных
+     * @param trainingProgramWrapper содержит данные тренировочной программы
+     * @return true - при успешном добавлении
+     * @throws ServerException генерирует исключение с кодом DATA_VALIDATE_ERROR либо TRAINING_PROGRAM_ADD_ERROR
+     */
+    public String addTrainingProgram(TrainingProgramWrapper trainingProgramWrapper) throws ServerException{
+        try{
+            if (trainingProgramWrapper.getUserID() != null && trainingProgramWrapper.getTrainingLocationID() != null
+            && trainingProgramWrapper.getLevelDifficultyWrapper().getId() != null){
+                TrainingProgram trainingProgram = new TrainingProgram();
+                trainingProgramWrapper.fromWrapper(trainingProgram);
+                trainingProgramRepository.save(trainingProgram);
+                return "true";
+            }else {
+                throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_VALIDATE_ERROR));
+            }
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_PROGRAM_ADD_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод обновления данных существующей тренировочной программы
+     * @param trainingProgramWrapper содержит обновленные данные
+     * @return true - при успешном обновлении данных
+     * @throws ServerException генерирует исключение с кодом TRAINING_PROGRAM_UPDATE_ERROR
+     */
+    public String editTrainingProgram(TrainingProgramWrapper trainingProgramWrapper) throws ServerException{
+        try{
+            TrainingProgram trainingProgram = getTrainingProgram(trainingProgramWrapper.getId());
+            trainingProgramWrapper.fromWrapper(trainingProgram);
+            trainingProgramRepository.save(trainingProgram);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_PROGRAM_UPDATE_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод удаления существующей тренировочной программы из базы данных
+     * @param trainingProgramWrapper содержит идентификатор удаляемой записи
+     * @return true - при успешном удалении
+     * @throws ServerException генерирует исключение с кодом TRAINING_PROGRAM_DELETE_ERROR
+     */
+    public String deleteTrainingProgram(TrainingProgramWrapper trainingProgramWrapper) throws ServerException{
+        try{
+            trainingProgramRepository.delete(trainingProgramWrapper.getId());
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_PROGRAM_DELETE_ERROR), ex);
+        }
+    }
 }
