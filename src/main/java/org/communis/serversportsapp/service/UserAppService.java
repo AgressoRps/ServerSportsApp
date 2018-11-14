@@ -3,6 +3,7 @@ package org.communis.serversportsapp.service;
 import org.communis.serversportsapp.dto.UserAppWrapper;
 import org.communis.serversportsapp.entity.UserApp;
 import org.communis.serversportsapp.enums.UserAppRole;
+import org.communis.serversportsapp.enums.UserState;
 import org.communis.serversportsapp.exception.ServerException;
 import org.communis.serversportsapp.exception.error.ErrorCodeConstants;
 import org.communis.serversportsapp.exception.error.ErrorInformation;
@@ -138,5 +139,125 @@ public class UserAppService {
     private UserApp getUserApp(Long id) throws ServerException{
         return userAppRepository.findById(id)
                 .orElseThrow(() -> new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_NOT_FOUND)));
+    }
+
+    /**
+     * Метод добавления нового пользователя в бд
+     * @param userAppWrapper данные пользователя
+     * @return true - при успешном добавлении
+     * @throws ServerException генерирует исключение с кодом USER_LOGIN_ALREADY_EXIST либо USER_ADD_ERROR
+     */
+    public String addUser(UserAppWrapper userAppWrapper) throws ServerException{
+        try{
+            UserApp userApp = new UserApp();
+            userAppWrapper.fromWrapper(userApp);
+            if (userAppRepository.findByLoginOrEmail(userApp.getLogin(), userApp.getEmail()).isPresent()){
+                throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.USER_LOGIN_ALREADY_EXIST));
+            }
+            userAppRepository.save(userApp);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.USER_ADD_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод обновления данных пользователя
+     * @param userAppWrapper содержит обновленные данные
+     * @return true - при успешном выполнении
+     * @throws ServerException генерирует исключение с кодом USER_UPDATE_ERROR
+     */
+    public String editUser(UserAppWrapper userAppWrapper) throws ServerException{
+        try {
+            UserApp userApp = getUserApp(userAppWrapper.getId());
+            userAppWrapper.fromWrapper(userApp);
+            userAppRepository.save(userApp);
+            return "true";
+        }catch (Exception ex) {
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.USER_UPDATE_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод удаления пользователя из базы данных
+     * @param userAppWrapper содержит идентификатор удаляемого пользователя
+     * @return true - при успешном удалении
+     * @throws ServerException генерирует исключение с кодом USER_DELETE_ERROR
+     */
+    public String deleteUser(UserAppWrapper userAppWrapper) throws ServerException{
+        try {
+            userAppRepository.delete(userAppWrapper.getId());
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.USER_DELETE_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод изменения состояния пользователя на Online
+     * @param userAppWrapper содержит идентификатор пользователя
+     * @return true - при успешном выполнении
+     * @throws ServerException генерирует исключение с кодом USER_UPDATE_ERROR
+     */
+    public String setUserStateOnline(UserAppWrapper userAppWrapper) throws ServerException{
+        try {
+            UserApp userApp = getUserApp(userAppWrapper.getId());
+            userApp.setUserState(UserState.ONLINE);
+            userAppRepository.save(userApp);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.USER_UPDATE_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод изменения состояния пользователя на Online
+     * @param userAppWrapper содержит идентификатор пользователя
+     * @return true - при успешном выполнении
+     * @throws ServerException генерирует исключение с кодом USER_UPDATE_ERROR
+     */
+    public String setUserStateOffline(UserAppWrapper userAppWrapper) throws ServerException{
+        try {
+            UserApp userApp = getUserApp(userAppWrapper.getId());
+            userApp.setUserState(UserState.OFFLINE);
+            userAppRepository.save(userApp);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.USER_UPDATE_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод изменения состояния пользователя на Online
+     * @param userAppWrapper содержит идентификатор пользователя
+     * @return true - при успешном выполнении
+     * @throws ServerException генерирует исключение с кодом USER_UPDATE_ERROR
+     */
+    public String setUserStateBlocked(UserAppWrapper userAppWrapper) throws ServerException{
+        try {
+            UserApp userApp = getUserApp(userAppWrapper.getId());
+            userApp.setUserState(UserState.BLOCKED);
+            userAppRepository.save(userApp);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.USER_UPDATE_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод изменения состояния пользователя на Online
+     * @param userAppWrapper содержит идентификатор пользователя
+     * @return true - при успешном выполнении
+     * @throws ServerException генерирует исключение с кодом USER_UPDATE_ERROR
+     */
+    public String setUserStateRemoved(UserAppWrapper userAppWrapper) throws ServerException{
+        try {
+            UserApp userApp = getUserApp(userAppWrapper.getId());
+            userApp.setUserState(UserState.REMOVED);
+            userAppRepository.save(userApp);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.USER_UPDATE_ERROR), ex);
+        }
     }
 }
