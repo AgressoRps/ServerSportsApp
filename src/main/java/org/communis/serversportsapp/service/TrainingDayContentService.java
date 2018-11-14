@@ -79,4 +79,57 @@ public class TrainingDayContentService {
                 .orElseThrow(() -> new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_NOT_FOUND)));
     }
 
+    /**
+     * Метод добавления содержимого тренировочного дня
+     * @param trainingDayContentWrapper содержимое тренировочного дня, которое необходимо добавить в бд
+     * @return true - при успешном выполнении
+     * @throws ServerException генерирует исключение с кодом DATA_VALIDATE_ERROR либо TRAINING_DAY_CONTENT_ADD_ERROR
+     */
+    public String addTrainingDayContent(TrainingDayContentWrapper trainingDayContentWrapper) throws ServerException{
+        try{
+            if (trainingDayContentWrapper.getTrainingDayID() != null && trainingDayContentWrapper.getExerciseWrapper().getId() != null){
+                TrainingDayContent trainingDayContent = new TrainingDayContent();
+                trainingDayContentWrapper.fromWrapper(trainingDayContent);
+                trainingDayContentRepository.save(trainingDayContent);
+                return "true";
+            }else {
+                throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_VALIDATE_ERROR));
+            }
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_DAY_CONTENT_ADD_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод редактирования содержимого тренировочного дня
+     * @param trainingDayContentWrapper новые данные, которыми необходимо заменить в бд
+     * @return true - при успешном выполнении
+     * @throws ServerException генерирует исключение с кодом TRAINING_DAY_CONTENT_UPDATE_ERROR
+     */
+    public String editTrainingDayContent(TrainingDayContentWrapper trainingDayContentWrapper) throws ServerException{
+        try{
+            TrainingDayContent trainingDayContent = getTrainingDayContent(trainingDayContentWrapper.getId());
+            trainingDayContentWrapper.fromWrapper(trainingDayContent);
+            trainingDayContentRepository.save(trainingDayContent);
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_DAY_CONTENT_UPDATE_ERROR), ex);
+        }
+    }
+
+    /**
+     * Метод удаления содержимого тренировочного дня
+     * @param trainingDayContentWrapper содержит идентификатор строки, которую необходимо удалить
+     * @return true - при успешном удалении
+     * @throws ServerException генерирует исключение с кодом TRAINING_DAY_CONTENT_DELETE_ERROR
+     */
+    public String deleteTrainingDayContent(TrainingDayContentWrapper trainingDayContentWrapper) throws ServerException{
+        try{
+            trainingDayContentRepository.delete(trainingDayContentWrapper.getId());
+            return "true";
+        }catch (Exception ex){
+            throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.TRAINING_DAY_CONTENT_DELETE_ERROR), ex);
+        }
+    }
+
 }
