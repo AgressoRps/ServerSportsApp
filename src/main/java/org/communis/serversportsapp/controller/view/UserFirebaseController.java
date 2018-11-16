@@ -14,7 +14,7 @@ import java.util.List;
 
 @Log4j2
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/user-firebase")
 public class UserFirebaseController {
 
     private final UserFirebaseService userFirebaseService;
