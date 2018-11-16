@@ -24,7 +24,7 @@ public class UserFirebase {
 
     @Column(name = "display_name")
     private String displayName;
-    
+
     @Column(name = "photo_url")
     private String photoUrl;
 
