@@ -62,22 +62,33 @@ public class UserFirebaseService {
     }
 
     public String addUser(UserFirebaseWrapper userFirebaseWrapper) throws ServerException{
+        //String result = null;
         try {
+            System.out.println(userFirebaseWrapper.getDisplayName());
+            System.out.println(userFirebaseWrapper.getEmail());
+            System.out.println(userFirebaseWrapper.getIsAnonymous());
+            System.out.println(userFirebaseWrapper.getPhotoUrl());
+            System.out.println(userFirebaseWrapper.getProviderId());
+            System.out.println(userFirebaseWrapper.getUid());
+            System.out.println(userFirebaseWrapper.getId());
             if (userFirebaseWrapper.getUid() != null){
                 //if (checkUserFirebase(userFirebaseRepository.))
-                UserFirebase userFirebase = getUserFirebaseByUid(userFirebaseWrapper.getUid());
-                if (userFirebase.getId() == null && userFirebase.getUid() == null){
+                UserFirebase userFirebase = null;
+                try {
+                    userFirebase = getUserFirebaseByUid(userFirebaseWrapper.getUid());
+                    throw new Exception("User already exist!");
+                }catch (ServerException ex){
                     UserFirebase addUser = new UserFirebase();
                     userFirebaseWrapper.fromWrapper(addUser);
-                    userFirebaseRepository.save(userFirebase);
+                    userFirebaseRepository.save(addUser);
                     return "true";
-                }else {
-                    throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.USER_LOGIN_ALREADY_EXIST));
                 }
             }else {
+                //result = "Data validate error!";
                 throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.DATA_VALIDATE_ERROR));
             }
         }catch (Exception ex){
+            //result = "User add error!";
             throw new ServerException(ErrorInformationBuilder.build(ErrorCodeConstants.USER_ADD_ERROR), ex);
         }
     }
